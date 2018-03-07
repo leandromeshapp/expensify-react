@@ -1,6 +1,5 @@
 import React from "react"
 import { shallow } from "enzyme"
-//import expenses from "../fixtures/expenses"
 import { ExpenseListFilters } from "../../components/ExpenseListFilters"
 import { filters, altFilters } from "../fixtures/filters"
 import moment from "moment"
@@ -66,7 +65,7 @@ test("It Should Handle Sort By Date", () => {
     wrapper.find("select").simulate("change", {
         target: { value }
     })
-    expect(sortByDate).toHaveBeenLastCalled()
+    expect(sortByDate).toHaveBeenCalled()
 })
 
 
@@ -77,7 +76,7 @@ test("It Should Handle Sort By Amount", () => {
     wrapper.find("select").simulate("change", {
         target: { value }
     })
-    expect(sortByAmount).toHaveBeenLastCalled()
+    expect(sortByAmount).toHaveBeenCalled()
 })
 
 
@@ -89,8 +88,8 @@ test("It Should Handle Data Changes", () => {
 
     wrapper.find("DateRangePicker").prop("onDatesChange")({ startDate, endDate })
 
-    expect(setStartDate).toHaveBeenLastCalled(startDate)
-    expect(setEndDate).toHaveBeenLastCalled(endDate)
+    expect(setStartDate).toHaveBeenLastCalledWith(startDate)
+    expect(setEndDate).toHaveBeenLastCalledWith(endDate)
 })
 
 
