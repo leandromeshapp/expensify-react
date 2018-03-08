@@ -89,7 +89,7 @@ test("Should edit an expense", () => {
 
 
 
-///////////////////////////////// should not edit expense if expense dpesnt exist
+///////////////////////////////// should not edit expense if expense doesnt exist
 
 test("Should not edit an expense if ID is invalid", () => {
     const amount = 122000
@@ -105,4 +105,18 @@ test("Should not edit an expense if ID is invalid", () => {
     const state = expensesReducer(expenses, action)
 
     expect(state).toEqual(expenses)
+})
+
+
+
+
+
+test("Should set expenses", () => {
+    const action = {
+        type: "SET_EXPENSES",
+        expenses: [expenses[1]]
+    }
+    const state = expensesReducer(expenses, action)
+    
+    expect(state).toEqual([expenses[1]])
 })
