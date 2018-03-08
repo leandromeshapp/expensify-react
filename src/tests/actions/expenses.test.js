@@ -64,31 +64,30 @@ test("Should add expense action object with PROVIDED values", () => {
 ///////////////////////////////////////////////////
 
 test("Should add expense to database and store", (done) => {
-    const store = createMockStore({})
+    const store = createMockStore({});
     const expenseData = {
-        description: "DeathAdder Elite",
-        amount: 70,
-        note: "Better sensor than DA Chroma",
-        createdAt: 1000
-    }
-
+      description: 'DeathAdder Elite',
+      amount: 60,
+      note: 'This mouse is better than DA Chroma',
+      createdAt: 1000
+    };
+  
     store.dispatch(startAddExpense(expenseData)).then(() => {
-        const actions = store.getActions()
-        
-        expect(actions[0]).toEqual({
-            type: "ADD_EXPENSE",
-            expense: {
-                id: expect.any(String),
-                ...expenseData
-            }
-        })
-
-        return database.ref(`expenses/${actions[0].expense.id}`).once("value")
-        }).then((snapshot) => {
-            expect(snapshot.val()).toEqual(expenseData)
-            done()
-        })
-    })
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: 'ADD_EXPENSE',
+        expense: {
+          id: expect.any(String),
+          ...expenseData
+        }
+      });
+  
+      return database.ref(`expenses/${actions[0].expense.id}`).once('value');
+    }).then((snapshot) => {
+      expect(snapshot.val()).toEqual(expenseData);
+      done();
+    });
+  });
 
 
 
@@ -96,7 +95,7 @@ test("Should add expense to database and store", (done) => {
 
 ///////////////////////////////////////////////////
 
-test("Should add expense with defaults to database and store", () => {
+test("Should add expense with defaults to database and store", (done) => {
     const store = createMockStore({})
     const expenseDefaults = {
         description: "",
