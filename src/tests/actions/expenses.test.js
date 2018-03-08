@@ -1,5 +1,7 @@
-import { startAddExpense, addExpense, editExpense, startEditExpense,
-    removeExpense, setExpenses, startSetExpenses, startRemoveExpense 
+import { addExpense, startAddExpense, 
+         editExpense, startEditExpense,
+         removeExpense, startRemoveExpens,
+         setExpenses, startSetExpenses
 } from "../../actions/expenses"
 
 import expenses from "../fixtures/expenses"
