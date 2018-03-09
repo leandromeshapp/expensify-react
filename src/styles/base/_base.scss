@@ -3,8 +3,10 @@ html {
 }
 
 body {
+    color: $darkGrey;
     font-family: Helvetica, Arial, sans-serif;
     font-size: $mSize;
+    line-height: 1.6;
 }
 
 button {
