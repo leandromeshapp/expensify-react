@@ -4,9 +4,6 @@ import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
 
 
-//import "./playground/promises"
-
-
 //Components
 import AppRouter from "./routers/AppRouter"
 
@@ -32,7 +29,7 @@ import "react-dates/lib/css/_datepicker.css"
 
 
 //Firebase
-import "./firebase/firebase"
+import { firebase } from "./firebase/firebase"
 
 
 const store = configureStore()
@@ -48,4 +45,12 @@ ReactDOM.render(<p> Loading ... </p>, document.getElementById("app"))
 store.dispatch(startSetExpenses())
 .then(() => {
     ReactDOM.render(jsx, document.getElementById("app"))
+})
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        console.log("Log In")
+    } else {
+        console.log("Log Out")
+    }
 })
