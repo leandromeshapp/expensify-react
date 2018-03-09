@@ -29,5 +29,6 @@ exports[`Should render Header correctly 1`] = `
   >
      Help 
   </NavLink>
+  <br />
 </header>
 `;

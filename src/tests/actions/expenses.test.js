@@ -1,6 +1,6 @@
 import { addExpense, startAddExpense, 
          editExpense, startEditExpense,
-         removeExpense, startRemoveExpens,
+         removeExpense, startRemoveExpense,
          setExpenses, startSetExpenses
 } from "../../actions/expenses"
 
