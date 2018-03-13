@@ -51,14 +51,14 @@ export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpen
                     </span> total)
                     </span>
 
-                    <button
+                    {/* <button
                         onClick={() => {
                             props.showAll();
                         }}
                         className="button button--showall"
                     >
                     View All
-                    </button>
+                    </button> */}
 
 
                 </div>}

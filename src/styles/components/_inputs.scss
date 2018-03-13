@@ -1,16 +1,97 @@
 .text-input {
-    border: 1px solid #caccdc;
+    border: 1px solid #cacccd;
     height: 50px;
+    width:100%;
+    font-size: $font-size-large;
+    font-weight: $s-weight;
     padding: $sSize;
-    font-size: 1.8rem;
-    font-weight: 300;
-}
-
-.select {
+    @media(max-width: $desktop-breakpoint) {
+      width: 100%;
+      height:40px;
+    }
+  }
+  
+  .text-input-minmax {
+    border: 1px solid #cacccd;
+    height: 50px;
+    width:30%;
+    font-size: $font-size-large;
+    font-weight: $s-weight;
+    padding: $sSize;
+    @media(max-width: $desktop-breakpoint) {
+      width: 100%;
+      height:40px;
+    }
+  }
+  
+  
+  .select {
     @extend .text-input;
-}
-
-.textarea {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+    &:hover {
+      background-color: darken($light-grey, 6);
+    }
+    @media (max-width: $desktop-breakpoint) {
+      width: 70%;
+      padding-bottom: 0;
+      padding-top: 0;
+    }
+  }
+  
+  .text-area {
     @extend .text-input;
     height: 10rem;
-}
+    resize: none;
+  }
+  
+  .filters-normal {
+    background: url('/images/arrow-down.png');
+    border:1px solid #cacccd;
+    border-radius: 0;
+    border-left: none;
+    background-size: 100% 100%;
+    margin-left: 0;
+    width: 70px;
+    height: 50px;
+    &:hover {
+      background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('/images/arrow-down.png');
+      border:1px solid #cacccd;
+      border-radius: 0;
+      border-left: none;
+      background-size: 100% 100%;
+      margin-left: 0;
+    }
+  }
+  .filters-reversed {
+    background: url('/images/arrow-up.png');
+    border:1px solid #cacccd;
+    border-radius: 0;
+    border-left: none;
+    background-size: 100% 100%;
+    margin-left: 0;
+    width: 70px;
+    height: 50px;
+    &:hover {
+      background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('/images/arrow-up.png');
+      border:1px solid #cacccd;
+      border-radius: 0;
+      border-left: none;
+      background-size: 100% 100%;
+      margin-left: 0;
+    }
+  }
+  
+  .input-filter-button {
+    @media(max-width: $desktop-breakpoint) {
+      width:30%;
+      height:40px;
+      background-size:contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+  }
+  
+  .justify-right {
+    text-align: right;
+  }

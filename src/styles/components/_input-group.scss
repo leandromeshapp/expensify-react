@@ -18,3 +18,42 @@
     }
 }
 
+
+.search-div {
+    margin-bottom: $sSize;
+}
+
+.sdp-div {
+    width: 100%;
+}
+  
+.minmax-div {
+    display: flex;
+    flex-direction: row;
+    width:50%;
+    @media(max-width: $desktop-breakpoint){
+      width:100%;
+    }
+}
+
+
+.input-filter-combo {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    margin-left: $lSize;
+      @media (max-width: $desktop-breakpoint) {
+      flex-direction:row;
+      width: 100%;
+      margin-bottom: $xsSize;
+    }
+  }
+  
+  
+.input-group__button {
+    margin-bottom: $lSize;
+    @media(max-width: $desktop-breakpoint) {
+      margin-bottom: $mSize;
+      margin-top: 0;
+    }
+}

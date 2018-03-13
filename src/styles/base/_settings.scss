@@ -4,9 +4,11 @@ $blueLight: #1c88bf;
 $darkblue: #364051;
 $offWhite: #f7f7f7;
 $grey: #666;
+$light-grey: #f7f7f7;
 
 
 // Spacing
+$xsSize: .6rem;
 $sSize: 1.2rem;
 $mSize: 1.6rem;
 $lSize: 3.2rem;
@@ -14,16 +16,24 @@ $xlSize: 4.8rem;
 
 
 // Font Size
-$font-size-large: 1.8rem;
 $font-size-small: 1.4rem;
+$font-size-large: 1.8rem;
 
 
 // Desktop Breakpoint
 $desktop-breakpoint: 45rem;
 
 
-
 //Font Weight
 $s-weight: 300;
 $m-weight: 500;
 $l-weight: 700;
+
+
+//HSL
+$disabled: .5;
+
+
+//Border Radius
+$s-border-radius: .5em;
+$m-border-radius: 1em;

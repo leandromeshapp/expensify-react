@@ -1,13 +1,13 @@
 .loader {
     align-items: center;
+    background-color: #001F32;
     display: flex;
     height: 100vh;
     justify-content: center;
-    width: 100vw;
-}
-
-
-.loader__image {
+    width: 100%;
+  }
+  
+  .loader__image {
     height: 6rem;
     width: 6rem;
-}
+  }

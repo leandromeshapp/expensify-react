@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { startLogout } from "../actions/auth"
 
 
-export const Header = ({ startLogout, photoURL, displayName,}) => (
+export const Header = ({ startLogout, photoURL, displayName}) => (
     <header className="header">
         <div className="content-container">
             <div className="header__content">
@@ -18,8 +18,9 @@ export const Header = ({ startLogout, photoURL, displayName,}) => (
                         displayName 
                     }
                     </span>
-
-                    <img className='header__user-avatar' src={`${photoURL}?sz=50`} />
+                    <Link className="header__photo" to ={`/profile/${displayName}`}>
+                        <img className='header__user-avatar' src={`${photoURL}?sz=50`} />
+                    </Link>
                     <button className='button button--link' onClick={ startLogout }>Logout</button>
                 </div>
 
