@@ -24,6 +24,9 @@
 
 .button--secondary {
     background: #888;
+    &:hover {
+        background-color: darken(#888, 10) !important;
+    }
 }
 
 

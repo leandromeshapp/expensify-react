@@ -1,36 +1,51 @@
-.modal {
-    background: $offWhite;
-    color: $darkblue;
+.ReactModalPortal > div {
+    opacity:0;
+  }
+  
+  .ReactModalPortal .ReactModal__Overlay {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transition: opacity 300ms ease-in-out;
+  }
+  
+  .ReactModalPortal .ReactModal__Overlay--after-open {
+    opacity: 1;
+  }
+  
+  .ReactModalPortal .ReactModal__Overlay--before-close {
+    opacity: 0;
+  }
+  
+  .modal {
+    background: $light-blue;
+    color: white;
+    max-height: 30rem;
     max-width: 30rem;
     outline: none;
+    overflow: scroll;
+    padding: $l-size;
     text-align: center;
-}
-
-.modal__top {
-    background: $darkblue;
-    height: 7rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal__title {
-    color: white;
-    font-size: $font-size-large;
-}
-
-.modal__body {
+  }
+  
+  .modal__title {
+    margin: 0 0 $s-size;
+  }
+  
+  .modal__body {
     font-size: 2rem;
     font-weight: 300;
-    padding: $mSize;
-    word-break: break-word;
-}
-
-.modal_buttons {
-    margin: 0 0 $lSize 0;
-}
-
-.modal button {
-    margin: 0 $sSize;
-    min-width: 80px;
-}
+    margin: 0 0 $l-size;
+    word-break: break-all;
+  }
+  
+  @media (max-width: $mobile-breakpoint){
+    .modal {
+      margin:0 5%;
+    }
+  }
+  
+  .modal-div {
+    display: flex;
+    justify-content: space-around;
+  }

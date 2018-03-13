@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { startLogin, startLoginEmail, createLoginEmail, startLoginGoogle } from '../actions/auth';
 
+import { Button } from 'react-bootstrap';
 // export const LoginPage = ({ startLogin }) => (
 export class LoginPage extends React.Component {
   constructor(props) {
@@ -56,26 +57,30 @@ export class LoginPage extends React.Component {
       <button className='button button--with-icon' style={{"background":"#4267b2"}} onClick={this.props.startLoginFacebookProp}><i className="icon-prepend fa fa-facebook-f"/>Login with Facebook</button>
       <button className='button button--with-icon' style={{"background":"#24292e"}} onClick={ () => startLogin('github') }><i className="icon-prepend fa fa-github"/>Login with Github</button>
 
+      <br/>
+      <br/>
       <form onSubmit={this.onSubmit} >
       <input
+        className="form-control"
         type="text"
         placeholder="Email"
         autoFocus
         value={this.state.email}
         onChange={this.onEmailChange}
       />
-
+      <br/>
       <input
+        className="form-control"
         type="password"
         placeholder="Password"
         value={this.state.password}
         onChange={this.onPasswordChange}
       />
 
-
-        <button className="button-login"> Login email </button> 
-
-        <button className="button-login"> Create Account </button>
+      <br/>
+      <Button bsStyle="primary" type="submit"> Login email </Button> 
+      <br/>
+      <Button bsStyle="danger" type="submit"> Create Account </Button>
     </form>
   </div>
   </div>

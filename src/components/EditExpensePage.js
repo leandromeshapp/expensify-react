@@ -47,29 +47,30 @@ export class EditExpensePage extends React.Component {
                     />
 
             </div>
-
-                    <button 
-                       className="button button--secondary" 
-                        onClick={this.openModal}> 
-                       Remove Expense 
-                    </button>
+                <button 
+                    className="button button--secondary" 
+                    onClick={this.openModal}> 
+                    Remove Expense 
+                </button>
                 
 
                 <ModalDialog
-                   modalOpen={this.state.modalOpen}
-                   handleModalCancel={this.closeModal}
-                contentLabel="Confirm Remove Expense">
-                  <h3>Do You Really Want To Remove This Expense?</h3>
-               <p>This cannot be undone!</p>
-              <button className="button" onClick={this.closeModal}>
-                     Cancel
-                 </button>
-               <button
-                   className="button button--destructive"
-                      onClick={this.onRemove}>
-                      Remove
-                    </button>
-                 </ModalDialog>
+                    modalOpen={this.state.modalOpen}
+                    handleModalCancel={this.closeModal}
+                    contentLabel="Confirm Remove Expense"
+                >
+
+                <h3>Do You Really Want To Remove This Expense?</h3>
+                <p>This cannot be undone!</p>
+                <button className="button" onClick={this.closeModal}>
+                    Cancel
+                </button>
+                <button
+                    className="button button--destructive"
+                    onClick={this.onRemove}>
+                    Remove
+                </button>
+                </ModalDialog>
         </div>
         )
     }
