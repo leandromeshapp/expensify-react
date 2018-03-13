@@ -28,6 +28,9 @@
     &:hover {
         background: $offWhite;
     }
+    &:hover .list-item__note {
+        opacity: .8;
+    }
 
     @media (min-width: $desktop-breakpoint) {
         align-items: center;
@@ -35,7 +38,7 @@
         justify-content: space-between;
         padding: $mSize;
     }
-}
+}   
 
 
 .list-item--message {
@@ -68,5 +71,25 @@
     @media (min-width: $desktop-breakpoint) {
         margin: 0;
         padding-left: $sSize;
+    }
+}
+
+
+
+.list-item__note {
+    align-self: center;
+    color: $darkblue;
+    margin: 0 $mSize 0 0;
+    max-height: 100px;
+    max-width: 50vw;
+    opacity: 0;
+    overflow: hidden;
+    text-align: end;
+    text-overflow: ellipsis;
+    transition: opacity .3s;
+    white-space: nowrap;
+    @media (min-width: $desktop-breakpoint) {
+        margin: 0 $sSize 0 $xlSize;
+        text-align: start;
     }
 }

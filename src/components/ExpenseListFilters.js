@@ -45,6 +45,25 @@ export class ExpenseListFilters extends React.Component {
                     />
                 </div>
 
+                    <div className="minmax-div">
+                        <input
+                            className="text-input-minmax"
+                            type="text"
+                            placeholder="Min"
+                            value={this.props.filters.minAmount}
+                            onChange={this.onMinChange}
+                        />
+
+                        <input
+                            className="text-input-minmax"
+                            type="text"
+                            placeholder="Max"
+                            value={this.props.filters.maxAmount}
+                            onChange={this.onMaxChange}
+                        />
+                    </div>
+
+
                 <div className="input-group__item">
                     <select 
                         className="select"

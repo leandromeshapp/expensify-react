@@ -1,0 +1,36 @@
+.modal {
+    background: $offWhite;
+    color: $darkblue;
+    max-width: 30rem;
+    outline: none;
+    text-align: center;
+}
+
+.modal__top {
+    background: $darkblue;
+    height: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal__title {
+    color: white;
+    font-size: $font-size-large;
+}
+
+.modal__body {
+    font-size: 2rem;
+    font-weight: 300;
+    padding: $mSize;
+    word-break: break-word;
+}
+
+.modal_buttons {
+    margin: 0 0 $lSize 0;
+}
+
+.modal button {
+    margin: 0 $sSize;
+    min-width: 80px;
+}

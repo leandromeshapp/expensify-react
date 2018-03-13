@@ -2,9 +2,26 @@ import React from "react"
 import { connect } from "react-redux" 
 import ExpenseForm from "./ExpenseForm"
 import { startEditExpense, startRemoveExpense } from "../actions/expenses"
-
+import { ModalDialog } from './ModalDialog';
+import Modal from 'react-modal';
+//import Prompt from './Prompt';
 
 export class EditExpensePage extends React.Component {
+    state = {
+        modalOpen: false
+      };
+    
+    openModal = () => {
+        console.log('open modal');
+        Modal.setAppElement(document.getElementById('app'));
+        this.setState(() => ({ modalOpen: true }));
+    };
+    
+    closeModal = () => {
+        this.setState(() => ({ modalOpen: false }));
+    };
+    
+    
     onSubmit = (expense) => {
         this.props.startEditExpense(this.props.expense.id, expense)
         this.props.history.push("/")
@@ -28,9 +45,32 @@ export class EditExpensePage extends React.Component {
                         expense = {this.props.expense}
                         onSubmit = {this.onSubmit}
                     />
-                    <button className="button button--secondary" onClick={this.onRemove}> Remove Expense </button>
-                </div>
+
             </div>
+
+                    <button 
+                       className="button button--secondary" 
+                        onClick={this.openModal}> 
+                       Remove Expense 
+                    </button>
+                
+
+                <ModalDialog
+                   modalOpen={this.state.modalOpen}
+                   handleModalCancel={this.closeModal}
+                contentLabel="Confirm Remove Expense">
+                  <h3>Do You Really Want To Remove This Expense?</h3>
+               <p>This cannot be undone!</p>
+              <button className="button" onClick={this.closeModal}>
+                     Cancel
+                 </button>
+               <button
+                   className="button button--destructive"
+                      onClick={this.onRemove}>
+                      Remove
+                    </button>
+                 </ModalDialog>
+        </div>
         )
     }
 }

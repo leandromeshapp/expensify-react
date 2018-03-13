@@ -13,9 +13,45 @@
 
 .button--link {
     background: none;
+    color: white;
+    &:hover {
+      transition: all .2s ease-out;
+      color: darken($offWhite, 20%);
+      transform: scale(1.1);
+    }
 }
 
 
 .button--secondary {
     background: #888;
 }
+
+
+.button--important {
+    background: #9c1a1a;
+}
+  
+.button--with-icon {
+    width: 100%;
+    margin: $sSize 0 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.button--showall {
+    border: none;
+    border-radius: 0;
+    color: white;
+    font-size: $font-size-large;
+    font-weight:$s-weight;
+    line-height: 1;
+    padding: $sSize;
+    margin-bottom: $sSize;
+    margin-top: $sSize;
+    background: blueLight;
+    width: 100%;
+    &:hover {
+      background: darken($blueLight, 5);
+    }
+  }
