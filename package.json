@@ -27,7 +27,7 @@
     "firebase": "^4.10.1",
     "history": "4.7.2",
     "material-ui": "^0.20.0",
-    "moment": "2.18.1",
+    "moment": "2.19.3",
     "node-sass": "4.5.3",
     "normalize.css": "7.0.0",
     "numeral": "2.0.6",
