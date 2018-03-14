@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startLogin, startLoginEmail, createLoginEmail, startLoginGoogle } from '../actions/auth';
-
+import { Redirect } from "react-router-dom"
 import { Button } from 'react-bootstrap';
 // export const LoginPage = ({ startLogin }) => (
 export class LoginPage extends React.Component {
@@ -26,6 +26,9 @@ export class LoginPage extends React.Component {
     this.setState(() => ({ password }));
   }
 
+  onCreate () {
+    <Redirect to = "/Register" />
+  }
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -49,7 +52,7 @@ export class LoginPage extends React.Component {
 
   render() {
     return (
-  <div className='box-layout'>
+    <div className='box-layout'>
     <div className='box-layout__box'>
       <h1 className='box-layout__title'>Expensify</h1>
       <p>It's time to get your expenses under controlsss</p>
@@ -81,7 +84,7 @@ export class LoginPage extends React.Component {
       <br/>
       <Button bsStyle="primary" type="submit"> Login email </Button> 
       <br/>
-      <Button bsStyle="danger" type="submit"> Create Account </Button>
+      <Button bsStyle="danger" onClick={() => this.onCreate()} > Create Account </Button>
     </form>
   </div>
   </div>

@@ -6,6 +6,7 @@ import Footer from "../components/Footer"
 
 export const PrivateRoute = ({ 
     isAuthenticated, 
+    userProvider,
     component: Component,
     ...rest
 }) => (
@@ -14,7 +15,7 @@ export const PrivateRoute = ({
             <div>
                 <Header />
                 <Component {...props} />
-                <Footer />
+                <Footer userProvider={userProvider} />
             </div>
         ) : (
             <Redirect to = "/" />
@@ -23,7 +24,8 @@ export const PrivateRoute = ({
 )
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: !!state.auth.uid
+    isAuthenticated: !!state.auth.uid,
+    userProvider: state.auth.provider,
 })
 
 export default connect(mapStateToProps)(PrivateRoute)
