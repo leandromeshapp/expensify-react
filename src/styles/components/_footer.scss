@@ -1,6 +1,10 @@
 .footer {
     background: darken($darkblue, 10%);
     padding: 1rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     text-align: center;
   }
   

@@ -26,7 +26,7 @@
       color: #777474;
       font-size: $mSize*1.2;
       font-style: italic;
-      margin-left: $mSize;
+      margin-left: 1 rem;
       @media(max-width: $desktop-breakpoint) {
         margin-left: 0;
       }

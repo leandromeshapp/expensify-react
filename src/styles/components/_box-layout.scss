@@ -9,6 +9,28 @@
 }
 
 
+.box-bg {
+    align-items: center;
+    background: url("/images/404.png") ;
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+.box-bg__loginPage {
+    color: white;
+    text-decoration: none!important;
+    margin-top: -25rem;
+    padding: 10rem;
+
+    &:hover {
+        color: #fff;
+    }
+}
+
+
 .box-layout__box {
     background: fade-out($color: white, $amount: .15);
     border-radius: 3px;

@@ -59,6 +59,7 @@ export class LoginPage extends React.Component {
 
       <br/>
       <br/>
+      <h1>E-mail Login </h1>
       <form onSubmit={this.onSubmit} >
       <input
         className="form-control"

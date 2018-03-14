@@ -12,10 +12,14 @@
   
 .header__title {
     color: white;
-    text-decoration: none;
+    text-decoration: none!important;
   
     h1 {
       margin: 0;  
+    }
+
+    &:hover {
+        color: #fff;
     }
 }
   
@@ -29,7 +33,7 @@
 .header__user-name {
    color: white;
    font-size: $font-size-small;
-   margin-right: $sSize;
+   margin-right: 1.8rem;
 }
   
 .header__user-avatar {
