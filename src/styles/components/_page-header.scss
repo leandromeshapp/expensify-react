@@ -1,6 +1,7 @@
 .page-header {
     background: $offWhite;
     padding: $lSize 0;
+    margin: 0;
     margin-bottom: $lSize;
 }
 
@@ -17,3 +18,20 @@
 .page-header__action {
     margin-top: $mSize;
 }
+
+
+.header-filter-message {
+    padding-top: .4rem;
+    > * {
+      color: #777474;
+      font-size: $mSize*1.2;
+      font-style: italic;
+      margin-left: $mSize;
+      @media(max-width: $desktop-breakpoint) {
+        margin-left: 0;
+      }
+      > * {
+        font-weight: bold;
+      }
+    }
+  }

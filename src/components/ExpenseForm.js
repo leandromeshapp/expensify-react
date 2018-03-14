@@ -3,6 +3,14 @@ import moment from "moment"
 import { SingleDatePicker } from "react-dates"
 
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TextField from 'material-ui/TextField';
+
+import {grey50, red50, black, white} from 'material-ui/styles/colors';
+import {fullBlack} from 'material-ui/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+
 export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props)
@@ -94,12 +102,22 @@ export default class ExpenseForm extends React.Component {
                 />
 
                 <textarea
-                    className="textarea"
+                    className="text-area"
                     placeholder = "Add a note for your expense (optional)" 
                     value={this.state.note}
                     onChange={this.onNoteChange}
                 >
                 </textarea>
+
+                {/* <MuiThemeProvider muiTheme={getMuiTheme()}>
+                    <div>
+                        <TextField
+                            hintText="Add a note for your expense (optional)"
+                            value={this.state.note}
+                            onChange={this.onNoteChange}
+                        />
+                    </div>
+                </MuiThemeProvider> */}
 
                 <div>
                     <button className="button"> Save Expense </button>

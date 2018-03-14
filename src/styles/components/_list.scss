@@ -23,10 +23,11 @@
     display: flex;
     flex-direction: column;
     padding: $sSize;
-    text-decoration: none;
+    text-decoration: none!important;
     transition: background .3s ease;
     &:hover {
         background: $offWhite;
+        color: $darkGrey;
     }
     &:hover .list-item__note {
         opacity: .8;

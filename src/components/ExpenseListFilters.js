@@ -150,11 +150,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);
 
 
-
-// WEBPACK FOOTER //
-// ./src/components/ExpenseListFilters.js
-
-
 // import React from "react"
 // import { connect } from "react-redux"
 // import { DateRangePicker } from "react-dates";

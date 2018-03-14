@@ -1,13 +1,24 @@
 .button {
     background: $blueLight;
     border: none;
+    border-radius: 0;   
+
     color: #fff;
+    display: inline-block;
+
     font-size: 1.8rem;
     font-weight: 300;
-    padding: $sSize;
-    display: inline-block;
-    text-decoration: none;
+
+    margin-bottom: $sSize;
+    margin-top: $sSize;
+
     line-height: 1;
+    padding: $sSize;
+    text-decoration: none!important;
+
+    &:hover {
+        color: #fff;
+    }
 }
 
 

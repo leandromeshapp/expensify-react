@@ -1,20 +1,70 @@
-import moment from "moment"
+// import moment from "moment"
 
 
-//GET Visible Expenses
-export default (expenses, { text, sortBy, startDate, endDate }) => {
-    return expenses.filter((expense) => {
-        const createdAtMoment = moment(expense.createdAt)
-        const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, "day") : true
-        const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, "day") : true
-        const textMatch = expense.description.toLowerCase().includes(text.toLowerCase())
+// //GET Visible Expenses
+// export default (expenses, { text, sortBy, startDate, endDate }) => {
+//     return expenses.filter((expense) => {
+//         const createdAtMoment = moment(expense.createdAt)
+//         const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, "day") : true
+//         const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, "day") : true
+//         const textMatch = expense.description.toLowerCase().includes(text.toLowerCase())
 
-        return startDateMatch && endDateMatch && textMatch
+//         return startDateMatch && endDateMatch && textMatch
+//     }).sort((a, b) => {
+//         if (sortBy === "date") {
+//             return a.createdAt < b.createdAt ? 1 : -1
+//         } else if (sortBy === "amount" ) {
+//             return a.amount < b.amount ? 1 : -1
+//         }
+//     })
+// }
+
+import moment from 'moment';
+
+export default (expenses, {
+    text,
+    sortBy,
+    startDate,
+    endDate,
+    sortReverse,
+    minAmount,
+    maxAmount,
+}) => expenses.filter((expense) => {
+    if ((parseInt(maxAmount, 10) === 0 && expense.amount > 0) || (parseInt(minAmount, 10) === 0 && expense.amount < 0)) {
+        return false;
+    }
+
+    const minAmountDollars = minAmount * 100;
+    const maxAmountDollars = maxAmount * 100;
+    const createdAtMoment = moment(expense.createdAt);
+    const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true;
+    const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true;
+    const textMatch = expense.description.toLowerCase().includes(text.toLowerCase()) || expense.description.toLowerCase().includes(text.toLowerCase());
+    const minAmountMatch = minAmountDollars ? expense.amount >= minAmountDollars : true;
+    const maxAmountMatch = maxAmountDollars ? expense.amount <= maxAmountDollars : true;
+
+
+    return startDateMatch && endDateMatch && textMatch && minAmountMatch && maxAmountMatch;
     }).sort((a, b) => {
-        if (sortBy === "date") {
-            return a.createdAt < b.createdAt ? 1 : -1
-        } else if (sortBy === "amount" ) {
-            return a.amount < b.amount ? 1 : -1
+
+    if (!sortReverse) {
+        if (sortBy === 'date') {
+            return a.createdAt < b.createdAt ? 1 : -1;
+        } else if (a.amount > b.amount) { // SORT BY AMOUNT BELOW
+            return -1;
+        } else if (a.amount < b.amount) {
+            return 1;
         }
-    })
-}
+            return a.description < b.description ? -1 : 1;// set equivalent values as alphabetical. could change this to defaulting to createdAt when amount is the same
+    } else if (sortReverse) {
+        if (sortBy === 'date') {
+            return a.createdAt > b.createdAt ? 1 : -1;
+        } else if (a.amount < b.amount) {
+            return -1;
+        } else if (a.amount > b.amount) {
+            return 1;
+        }
+            return a.description > b.description ? -1 : 1;
+    }
+    return undefined;
+});

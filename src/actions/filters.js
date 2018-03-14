@@ -17,6 +17,12 @@ export const sortByAmount = () => ({
 })
 
 
+// SORT_REVERSE
+export const sortReverse = () => ({
+    type: 'SORT_REVERSE',
+  })
+
+
 // SET START DATE
 export const setStartDate = (startDate) => ({
     type: "SET_START_DATE",
@@ -36,7 +42,6 @@ export const showAll = (clear) => ({
     type: "CLEAR_FILTERS",
 
 })
-
 
 
 // SET_MIN_AMOUNT
