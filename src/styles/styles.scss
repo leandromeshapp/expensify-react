@@ -2,6 +2,7 @@
 @import "./base/base";
 
 @import "./components/box-layout";
+@import "./components/box-layout2";
 @import "./components/button";
 @import "./components/header";
 @import "./components/content-container";
@@ -13,3 +14,5 @@
 @import "./components/list";
 @import "./components/loader";
 @import "./components/footer";
+
+@import "./components/limiter"

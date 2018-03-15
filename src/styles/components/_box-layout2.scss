@@ -1,0 +1,33 @@
+.box-layout {
+    align-items: center;
+    background: #364051;
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+.box-layout--box {
+    background: fade-out($color: white, $amount: 1);
+    border-radius: 3px;
+    padding: $lSize $mSize;
+    text-align: center;
+    width: 35rem;
+}
+
+.buttonRegister {
+    width: 40%;
+}
+
+.form-control {
+    width: 45%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.box-layout--title {
+    margin: 0 0 $mSize 0;
+    line-height: 1;
+}

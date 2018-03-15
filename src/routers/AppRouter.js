@@ -11,6 +11,7 @@ import LoginPage from "../components/LoginPage"
 import Register from "../components/Register"
 import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
+import RegisterPage from "../components/RegisterPage";
 
 
 export const history = createHistory()
@@ -23,6 +24,8 @@ const AppRouter = () => (
             <PublicRoute exact path="/" component={LoginPage} />
             <Route exact path="/Register" component={Register} />
 
+            <Route exact path="/RegisterPage" component={RegisterPage} />
+            
             <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
             <PrivateRoute path="/create" component={AddExpensePage} />
             <PrivateRoute path="/edit/:id" component={EditExpensePage} />

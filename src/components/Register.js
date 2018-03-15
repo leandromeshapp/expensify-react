@@ -79,6 +79,7 @@ export class Register extends React.Component {
                 onChange={this.onNameChange}
             />
             <br/>
+            <div className="testeSs">
             <input
                 //className="form-control"
                 className={this.state.emailError || this.state.generalError ? "form-control login-spacing-error form-box-error " : "form-control login-spacing"}
@@ -87,6 +88,7 @@ export class Register extends React.Component {
                 value={this.state.email}
                 onChange={this.onEmailChange}
             />
+            </div>
             {this.state.emailError && <span className="form__error">{this.state.emailError}</span>}
             <br/>
             <input
@@ -108,9 +110,10 @@ export class Register extends React.Component {
             />
 
             <br/>
-            <Button bsStyle="primary" onClick={this.onCreateLoginEmail}> Register </Button>
+            <Button className="buttonRegister" bsStyle="primary" onClick={this.onCreateLoginEmail}> Register </Button>
             <br/>
-            <Button bsStyle="danger" onClick={this.backHome}> Home </Button>
+            <br/>
+            <Button className="buttonRegister" bsStyle="danger" onClick={this.backHome}> Home </Button>
         </div>
     </div>
     );
