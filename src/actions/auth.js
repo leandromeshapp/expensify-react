@@ -44,9 +44,10 @@ export const createLoginEmail = (email, password) => {
             return e;
         });
     };
-  };
+};
+
   
-  export const startLoginEmail = (email, password) => {
+export const startLoginEmail = (email, password) => {
     return () => {
         return firebase.auth().signInWithEmailAndPassword(email, password).catch((e) => {
             return e;

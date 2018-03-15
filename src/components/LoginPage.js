@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startLogin, startLoginEmail, createLoginEmail, startLoginGoogle } from '../actions/auth';
-import { Redirect } from "react-router-dom"
+import { Redirect, App, Route, Switch} from "react-router-dom"
 import { Button } from 'react-bootstrap';
+import { Register } from './Register';
 // export const LoginPage = ({ startLogin }) => (
 export class LoginPage extends React.Component {
   constructor(props) {
@@ -50,15 +51,21 @@ export class LoginPage extends React.Component {
     });
   }
 
+
+  onCreateLoginEmail = () => {
+    this.props.history.push("/Register")
+    console.log("yau")
+}
+
   render() {
     return (
     <div className='box-layout'>
     <div className='box-layout__box'>
       <h1 className='box-layout__title'>Expensify</h1>
       <p>It's time to get your expenses under controlsss</p>
-      <button className='button button--with-icon' onClick={this.props.startLoginGoogleProp}><i className="icon-prepend fa fa-google"/>Login with Google</button>
-      <button className='button button--with-icon' style={{"background":"#4267b2"}} onClick={this.props.startLoginFacebookProp}><i className="icon-prepend fa fa-facebook-f"/>Login with Facebook</button>
-      <button className='button button--with-icon' style={{"background":"#24292e"}} onClick={ () => startLogin('github') }><i className="icon-prepend fa fa-github"/>Login with Github</button>
+      <button className='button button--with-icon' onClick={this.props.startLoginGoogleProp}><i className="icon-prepend fa fa-google"/> Login with Google</button>
+      <button className='button button--with-icon' style={{"background":"#4267b2"}} onClick={this.props.startLoginFacebookProp}><i className="icon-prepend fa fa-facebook-f"/> Login with Facebook</button>
+      <button className='button button--with-icon' style={{"background":"#24292e"}} onClick={ () => startLogin('github') }><i className="icon-prepend fa fa-github"/> Login with Github</button>
 
       <br/>
       <br/>
@@ -82,9 +89,11 @@ export class LoginPage extends React.Component {
       />
 
       <br/>
-      <Button bsStyle="primary" type="submit"> Login email </Button> 
-      <br/>
-      <Button bsStyle="danger" onClick={() => this.onCreate()} > Create Account </Button>
+      <div className="botaoMargin">
+        <Button bsStyle="primary" type="submit"> Login email </Button> 
+        <br/>
+        <Button bsStyle="danger" onClick={this.onCreateLoginEmail} > Create Account </Button>
+      </div>
     </form>
   </div>
   </div>

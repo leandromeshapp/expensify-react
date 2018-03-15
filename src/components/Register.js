@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-//import { startLogin, startLoginEmail, createLoginEmail, startLoginGoogle } from '../actions/auth';
-
+import { createLoginEmail } from '../actions/auth';
+import validator from 'validator';
 import { Button } from 'react-bootstrap';
 
 export class Register extends React.Component {
@@ -18,6 +18,15 @@ export class Register extends React.Component {
     };
   }
 
+  backHome = () => {
+    this.props.history.push("/")
+}
+
+  onNameChange = (e) => {
+    const name = e.target.value;
+    this.setState(() => ({ name }));
+  }
+
   onEmailChange = (e) => {
     const email = e.target.value;
     this.setState(() => ({ email }));
@@ -28,38 +37,39 @@ export class Register extends React.Component {
     this.setState(() => ({ password }));
   }
 
+  onRepeatPasswordChange = (e) => {
+    const repeatPassword = e.target.value;
+    this.setState(() => ({ repeatPassword }));
+  }
 
-  onSubmit = (e) => {
+  onCreateLoginEmail = (e) => {
     e.preventDefault();
-    this.props.startLoginEmailProp(this.state.email, this.state.password).then((resErr) => {
-      throw resErr;
-    }).catch((err) => {
-      if (err.code === 'auth/invalid-email') {
-        this.setState(() => ({ emailError: 'Invalid email format' }));
-      }
-      if (this.state.password.length < 6) {
-        this.setState(() => ({ passwordError: 'Passwords must be at least six characters' }));
-      } else if (err.code !== 'auth/invalid-email' && this.state.password.length >= 6) {
-        if (err.code === 'auth/wrong-password') {
+    this.setState(() => ({ emailError: '' , passwordError: '' }));
+
+
+    if (validator.isEmail(this.state.email) && this.state.password.length >= 6) {
+      return this.props.createLoginEmailProp(this.state.email, this.state.password).then((resErr) => {
+        if (resErr.code === 'auth/email-already-in-use') {
+          console.log('sahdgsjfgkksdjhfgdhjsagfjdgsahjfasdjfkghsad');
           return this.props.startLoginGoogleProp();
         }
-        return this.setState(() => ({ generalError: 'Invalid login' }));
-      }
-      return undefined;
-    });
+        return undefined;
+      });
+    }
+    if (!validator.isEmail(this.state.email)) {
+      this.setState(() => ({ emailError: 'Invalid email' }));
+    }
+    if (this.state.password.length < 6) {
+      this.setState(() => ({ passwordError: 'Passwords must be at least six characters' }));
+    }
+    return undefined;
   }
 
   render() {
     return (
     <div className='box-layout'>
         <div className='box-layout__box'>
-            <h1 className='box-layout__title'>Expensify</h1>
-            <p>It's time to get your expenses under controlsss</p>
-    
-            <br/>
-            <br/>
             <h1> Register Account </h1>
-            <form onSubmit={this.onSubmit} >
             <input
                 className="form-control"
                 type="text"
@@ -70,22 +80,25 @@ export class Register extends React.Component {
             />
             <br/>
             <input
-                className="form-control"
+                //className="form-control"
+                className={this.state.emailError || this.state.generalError ? "form-control login-spacing-error form-box-error " : "form-control login-spacing"}
                 type="text"
                 placeholder="Email"
-                autoFocus
                 value={this.state.email}
                 onChange={this.onEmailChange}
             />
+            {this.state.emailError && <span className="form__error">{this.state.emailError}</span>}
             <br/>
             <input
                 className="form-control"
+                className={this.state.passwordError || this.state.generalError ? "form-control login-spacing-error form-box-error " : "form-control login-spacing"}
                 type="password"
                 placeholder="Password"
                 value={this.state.password}
                 onChange={this.onPasswordChange}
             />
-
+            {this.state.passwordError && <span className="form__error">{this.state.passwordError}</span>}
+            <br/>
             <input
                 className="form-control"
                 type="password"
@@ -95,8 +108,9 @@ export class Register extends React.Component {
             />
 
             <br/>
-            <Button bsStyle="primary" type="submit"> Register </Button> 
-            </form>
+            <Button bsStyle="primary" onClick={this.onCreateLoginEmail}> Register </Button>
+            <br/>
+            <Button bsStyle="danger" onClick={this.backHome}> Home </Button>
         </div>
     </div>
     );
@@ -107,10 +121,8 @@ export class Register extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    startLogin: (provider) => dispatch(startLogin(provider)),
-    startLoginGoogleProp: () => dispatch(startLoginGoogle()),
-    startLoginEmailProp: (email, password) => dispatch(startLoginEmail(email, password)),
+    createLoginEmailProp: (email, password) => dispatch(createLoginEmail(email, password)),
 });
 
-//export default connect(undefined, mapDispatchToProps)(LoginPage);
-export default Register;
+export default connect(undefined, mapDispatchToProps)(Register);
+//export default Register;
