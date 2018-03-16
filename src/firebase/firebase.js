@@ -13,12 +13,13 @@ firebase.initializeApp(config);
 
 const database = firebase.database()
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
-const githubAuthProvider = new firebase.auth.GithubAuthProvider();
-const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+const githubAuthProvider = new firebase.auth.GithubAuthProvider()
+const facebookAuthProvider = new firebase.auth.FacebookAuthProvider()
 
-const emailProvider = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
-const emailLogin = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
+//const idProvider = new firebase.auth.getInstance().getCurrentUser().getProviders()
 
+const emailProvider = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password)
+const emailLogin = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password)
 
 
 export {
@@ -26,6 +27,7 @@ export {
     googleAuthProvider,
     emailProvider,
     emailLogin,
+    //idProvider,
     githubAuthProvider,
     facebookAuthProvider,
     database as default

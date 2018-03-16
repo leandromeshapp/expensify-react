@@ -3,6 +3,7 @@ import { firebase, googleAuthProvider, emailProvider , facebookAuthProvider, git
 export const login = ( uid, displayName, email, photoURL ) => ({
     type: "LOGIN",
     uid,
+    //providerId,
     displayName,
     email,
     photoURL

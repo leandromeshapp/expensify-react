@@ -12,6 +12,7 @@ import Register from "../components/Register"
 import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
 //import RegisterPage from "../components/RegisterPage";
+import LoginT from "../components/LoginT"
 
 
 export const history = createHistory()
@@ -22,9 +23,9 @@ const AppRouter = () => (
     <div>
         <Switch>
             <PublicRoute exact path="/" component={LoginPage} />
-            <Route exact path="/Register" component={Register} />
-
-            {/* <Route exact path="/RegisterPage" component={RegisterPage} /> */}
+            
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/logint" component={LoginT} />
             
             <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
             <PrivateRoute path="/create" component={AddExpensePage} />

@@ -8,7 +8,7 @@ export const Footer = ( props ) => (
     <div className="footer__content">
       <span className="footer__title">
         Logged in via{' '}
-        {props.providerId == 'google.com' ? 'Google: ' : 'Google: '}
+        {props.providerId == 'firebase' ? 'Google: ' : 'E-mail: '}
         {props.displayName} &lt;{props.email}&gt;
       </span>
       <img src={`${props.photoURL}?sz=30`} alt="Avatar" />
@@ -18,6 +18,7 @@ export const Footer = ( props ) => (
 );
 
 const mapStateToProps = (state) => ({
+  providerId: state.auth.providerId,
   email: state.auth.email,
   userName: state.auth.displayName,
   photoURL: state.auth.photoURL

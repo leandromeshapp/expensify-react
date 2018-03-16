@@ -51,9 +51,10 @@ ReactDOM.render(<LoadingPage />, document.getElementById("app"))
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        const { uid, displayName, email, photoURL } = user
-        store.dispatch(login( uid, displayName, email, photoURL ))
-        
+        const { uid, displayName, email, photoURL, providerId } = user
+        store.dispatch(login( uid, displayName, email, photoURL, providerId ))
+        console.log("log in with ", providerId)
+
         store.dispatch(startSetExpenses())
         .then(() => {
             renderApp()
@@ -62,6 +63,7 @@ firebase.auth().onAuthStateChanged((user) => {
             }
         })
     } else {
+        console.log('log out');
         store.dispatch(logout())
         renderApp()
         history.push("/")
