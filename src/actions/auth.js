@@ -16,6 +16,20 @@ export const logout = () => ({
 
 
 
+export const startLoginGoogle = () => {
+    return () => {
+        const providerData = firebase.auth().providerData;
+        console.log('onAuthStateChanged promise：', providerData[0].providerId)
+        console.log('firebase.auth.FacebookAuthProvider.PROVIDER_ID：', firebase.auth.FacebookAuthProvider.PROVIDER_ID)
+
+
+      return firebase.auth().signInWithPopup(googleAuthProvider).catch((e) => {
+        return console.log(`Error: ${e}`);
+      });
+    };
+  };
+
+
 export const startLogin = (provider) => {
     return (dispatch) => {
         switch (provider) {
@@ -55,12 +69,3 @@ export const startLoginEmail = (email, password) => {
         });
     };
 }
-
-
-export const startLoginGoogle = () => {
-    return () => {
-      return firebase.auth().signInWithPopup(googleAuthProvider).catch((e) => {
-        return console.log(`Error: ${e}`);
-      });
-    };
-  };

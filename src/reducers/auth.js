@@ -3,10 +3,10 @@ export default (state = {}, action) => {
         case "LOGIN":
             return {
                 uid: action.uid,
+                //providerId: action.providerId,
                 displayName: action.displayName,
                 email: action.email,
-                photoURL: action.photoURL,
-                providerId: action.providerId
+                photoURL: action.photoURL
             }
         case "LOGOUT":
             return {}
