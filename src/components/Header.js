@@ -19,7 +19,9 @@ export const Header = ({ startLogout, photoURL, displayName}) => (
                     }
                     </span>
                     {/* <Link className="header__photo" to ={`/profile/${displayName}`}> */}
-                        <img className='header__user-avatar' src={`${photoURL}?sz=50`} />
+                    <div className="footer__content">
+                        <img className='header__user-avatar' src={`${photoURL}`} />
+                    </div>
                     {/* </Link> */}
                     
                     <button className='button button--link' onClick={ startLogout }>Logout</button>

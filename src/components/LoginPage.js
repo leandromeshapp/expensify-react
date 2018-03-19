@@ -72,22 +72,22 @@ export class LoginPage extends React.Component {
       <br/>
       <br/>
       <h1>E-mail Login </h1>
-      {/* <form onSubmit={this.onSubmit} > */}
+      <form onSubmit={this.onSubmit} >
       <input
         className="form-control"
         type="text"
         placeholder="Email"
         autoFocus
-        //value={this.state.email}
-       // onChange={this.onEmailChange}
+        value={this.state.email}
+        onChange={this.onEmailChange}
       />
       <br/>
       <input
         className="form-control"
         type="password"
         placeholder="Password"
-        //value={this.state.password}
-        //onChange={this.onPasswordChange}
+        value={this.state.password}
+        onChange={this.onPasswordChange}
       />
 
       <br/>
@@ -96,7 +96,7 @@ export class LoginPage extends React.Component {
         <br/>
         <Button bsStyle="danger" onClick={this.onCreateLoginEmail} > Create Account </Button>
       </div>
-    {/* </form> */}
+    </form>
   </div>
   </div>
     );
@@ -110,7 +110,7 @@ export class LoginPage extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
     startLoginGoogleProp: () => dispatch(startLoginGoogle()),
     startLogin: (provider) => dispatch(startLogin(provider)),
-    //startLoginGoogleProp: () => dispatch(startLoginGoogle()),
+    startLoginGoogleProp: () => dispatch(startLoginGoogle()),
     startLoginEmailProp: (email, password) => dispatch(startLoginEmail(email, password)),
 });
 
