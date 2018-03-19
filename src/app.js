@@ -77,7 +77,7 @@ firebase.auth().onAuthStateChanged((user) => {
 
 
         if (user) {
-
+        console.log('User logged in with firebase ID: ', user.uid);
         user.providerData.forEach(function (profile) {
             console.log("Sign-in provider: " + profile.providerId);
             console.log("  Provider-specific UID: " + profile.uid);
