@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startLogin, startLoginEmail, createLoginEmail, startLoginGoogle, startLoginGithub, startLoginFacebook } from '../actions/auth';
+import { startLogin, startLoginEmail, createLoginEmail, startLoginGoogle, startLoginGithub, startLoginFacebook, startLoginTwitter } from '../actions/auth';
 import { Redirect, App, Route, Switch} from "react-router-dom"
 import { Button } from 'react-bootstrap';
 import { Register } from './Register';
@@ -68,6 +68,8 @@ export class LoginPage extends React.Component {
       <button className='button button--with-icon' onClick={ this.props.startLoginGoogleProp }><i className="icon-prepend fa fa-google"/> Login with Google</button>
       <button className='button button--with-icon' style={{"background":"#4267b2"}} onClick={ this.props.startLoginFacebookProp }><i className="icon-prepend fa fa-facebook-f"/> Login with Facebook</button>
       <button className='button button--with-icon' style={{"background":"#24292e"}} onClick={ this.props.startLoginGithubProp }><i className="icon-prepend fa fa-github"/> Login with Github</button>
+      <button className='button button--with-icon' style={{"background":"#1dcaff"}} onClick={ this.props.startLoginTwitterProp }><i className="icon-prepend fa fa-twitter"/> Login with Twitter</button>
+
 
       <br/>
       <br/>
@@ -111,6 +113,7 @@ const mapDispatchToProps = (dispatch) => ({
     startLoginGoogleProp: () => dispatch(startLoginGoogle()),
     startLoginGithubProp: () => dispatch(startLoginGithub()),
     startLoginFacebookProp: () => dispatch(startLoginFacebook()),
+    startLoginTwitterProp: () => dispatch(startLoginTwitter()),
     startLogin: (provider) => dispatch(startLogin(provider)),
     //startLoginGoogleProp: () => dispatch(startLoginGoogle()),
     startLoginEmailProp: (email, password) => dispatch(startLoginEmail(email, password)),

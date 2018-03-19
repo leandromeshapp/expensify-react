@@ -21,6 +21,9 @@ export const Footer = ( props ) => (
             "Facebook: "
           }
  
+          { props.providerId == "twitter.com" &&
+            "Twitter: "
+          }
 
           {/* {props.providerId == 'google.com' ? 'Google: ' : 'GitHub: '} */}
           {props.displayName} &lt;{props.email}&gt;

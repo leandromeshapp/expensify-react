@@ -9,6 +9,11 @@ import ExpenseDashboardPage from "../components/ExpenseDashboardPage"
 import NotFoundPage from "../components/NotFoundPage"
 import LoginPage from "../components/LoginPage"
 import Register from "../components/Register"
+
+import Terms from "../components/Terms"
+import Privacy from "../components/Privacy"
+
+
 import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
 //import RegisterPage from "../components/RegisterPage";
@@ -26,7 +31,9 @@ const AppRouter = () => (
             
             <Route exact path="/register" component={Register} />
             {/* <Route exact path="/logint" component={LoginT} /> */}
-            
+            <Route exact path="/terms" component={Terms} />
+            <Route exact path="/privacy" component={Privacy} />
+
             <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
             <PrivateRoute path="/create" component={AddExpensePage} />
             <PrivateRoute path="/edit/:id" component={EditExpensePage} />

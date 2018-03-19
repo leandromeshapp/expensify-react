@@ -1,4 +1,4 @@
-import { firebase, googleAuthProvider, emailProvider , facebookAuthProvider, githubAuthProvider } from "../firebase/firebase"
+import { firebase, googleAuthProvider, emailProvider , facebookAuthProvider, githubAuthProvider, twitterAuthProvider } from "../firebase/firebase"
 
 
 export const login = ( uid, providerId, displayName, email, photoURL ) => ({
@@ -38,6 +38,11 @@ export const startLoginGithub = () => {
 
 export const startLoginFacebook = () => {
     return firebase.auth().signInWithPopup(facebookAuthProvider);
+}
+
+
+export const startLoginTwitter = () => {
+    return firebase.auth().signInWithPopup(twitterAuthProvider);
 }
 
 
