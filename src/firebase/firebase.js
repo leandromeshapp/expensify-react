@@ -43,15 +43,15 @@ const twitterAuthProvider = new firebase.auth.TwitterAuthProvider()
 
 //const idProvider = new firebase.auth.getInstance().getCurrentUser().getProviders()
 
-const emailProvider = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password)
-const emailLogin = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password)
+// const emailProvider = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password)
+// const emailLogin = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password)
 
 
 export {
     firebase,
     googleAuthProvider,
-    emailProvider,
-    emailLogin,
+    // emailProvider,
+    // emailLogin,
     twitterAuthProvider,
     githubAuthProvider,
     facebookAuthProvider,

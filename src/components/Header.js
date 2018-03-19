@@ -4,7 +4,8 @@ import { connect } from "react-redux"
 import { startLogout } from "../actions/auth"
 
 
-export const Header = ({ startLogout, photoURL, displayName}) => (
+//export const Header = ({ startLogout, currentUser, photoURL, displayName }) => (
+export const Header = ({ startLogout, currentUser }) => (
     <header className="header">
         <div className="content-container">
             <div className="header__content">
@@ -14,9 +15,7 @@ export const Header = ({ startLogout, photoURL, displayName}) => (
 
                 <div className='header__user'>
                     <span className='header__user-name'>
-                    { 
-                        displayName 
-                    }
+                    { currentUser.displayName || currentUser.email }
                     </span>
                     {/* <Link className="header__photo" to ={`/profile/${displayName}`}> */}
                     <div className="footer__content">
@@ -35,8 +34,10 @@ export const Header = ({ startLogout, photoURL, displayName}) => (
 
 
 const mapStateToProps = (state) => ({
-    photoURL: state.auth.photoURL,
-    displayName: state.auth.displayName
+    // photoURL: state.auth.photoURL,
+    // displayName: state.auth.displayName,
+    // email: state.auth.email,
+    currentUser: state.auth.currentUser,
 });
 
 

@@ -7,7 +7,9 @@ export const Footer = ( props ) => (
     <div className="content-container">
       <div className="footer__content">
         <span className="footer__title">
-          Logged in via{' '}
+          {props.displayName &&
+            "yau"
+          } you're logged in via{' '}
 
           { props.providerId == "google.com" &&
             "Google: "
@@ -25,10 +27,26 @@ export const Footer = ( props ) => (
             "Twitter: "
           }
 
+          {
+            props.providerId == "password" &&
+            "E-mail: "
+          }
+
           {/* {props.providerId == 'google.com' ? 'Google: ' : 'GitHub: '} */}
-          {props.displayName} &lt;{props.email}&gt;
+
+          { props.displayName === "null" &&
+            "teste display name"
+          }
+
+          &lt;{props.email}&gt;
         </span>
-        <img src={props.photoURL} alt="Avatar" />
+        { props.photoURL === "null" &&
+          <img src="/Cool Twitter Avatar Default avatar.png" />
+        }
+        { props.photoURL &&
+          <img src={props.photoURL} alt="Avatar" />
+        }
+        
       </div>
     </div>
   </footer>
@@ -37,7 +55,7 @@ export const Footer = ( props ) => (
 const mapStateToProps = (state) => ({
   providerId: state.auth.providerId,
   email: state.auth.email,
-  userName: state.auth.displayName,
+  displayName: state.auth.displayName,
   photoURL: state.auth.photoURL
 });
 

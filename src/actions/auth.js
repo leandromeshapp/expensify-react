@@ -1,13 +1,14 @@
 import { firebase, googleAuthProvider, emailProvider , facebookAuthProvider, githubAuthProvider, twitterAuthProvider } from "../firebase/firebase"
 
 
-export const login = ( uid, providerId, displayName, email, photoURL ) => ({
+export const login = ( uid, providerId, displayName, email, photoURL, currentUser ) => ({
     type: "LOGIN",
     uid,
     providerId,
     displayName,
     email,
-    photoURL
+    photoURL,
+    currentUser,
 })
 
 
@@ -81,7 +82,7 @@ export const createLoginEmail = (email, password) => {
 export const startLoginEmail = (email, password) => {
     return () => {
         return firebase.auth().signInWithEmailAndPassword(email, password).catch((e) => {
-            return e;
+            return console.log(e);
         });
     };
 }

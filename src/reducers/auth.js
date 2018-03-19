@@ -6,7 +6,8 @@ export default (state = {}, action) => {
                 providerId: action.providerId,
                 displayName: action.displayName,
                 email: action.email,
-                photoURL: action.photoURL
+                photoURL: action.photoURL,
+                currentUser: action.currentUser,
             }
         case "LOGOUT":
             return {}
