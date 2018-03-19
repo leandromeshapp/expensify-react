@@ -36,6 +36,11 @@ export const startLoginGithub = () => {
 }
 
 
+export const startLoginFacebook = () => {
+    return firebase.auth().signInWithPopup(facebookAuthProvider);
+}
+
+
 export const startLogin = (provider) => {
     return (dispatch) => {
         switch (provider) {
