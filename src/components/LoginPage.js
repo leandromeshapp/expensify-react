@@ -42,7 +42,7 @@ export class LoginPage extends React.Component {
         this.setState(() => ({ emailError: 'Invalid email format' }));
       }
       if (this.state.password.length < 6) {
-        this.setState(() => ({ passwordError: 'Password must be at least six characters' }));
+        this.setState(() => ({ passwordError: 'Password must be at least six characterss' }));
       } else if (err.code !== 'auth/invalid-email' && this.state.password.length >= 6) {
         if (err.code === 'auth/wrong-password') {
           return this.props.startLoginGoogleProp();
