@@ -7,7 +7,7 @@ export default (state = {}, action) => {
                 displayName: action.displayName,
                 email: action.email,
                 photoURL: action.photoURL,
-                currentUser: action.currentUser,
+                //currentUser: action.currentUser,
             }
         case "LOGOUT":
             return {}

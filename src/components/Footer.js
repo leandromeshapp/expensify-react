@@ -7,9 +7,7 @@ export const Footer = ( props ) => (
     <div className="content-container">
       <div className="footer__content">
         <span className="footer__title">
-          {props.displayName &&
-            "yau"
-          } you're logged in via{' '}
+          {props.displayName} you're logged in via{' '}
 
           { props.providerId == "google.com" &&
             "Google: "

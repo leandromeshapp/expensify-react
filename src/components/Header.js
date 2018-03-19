@@ -1,11 +1,12 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
+
 import { startLogout } from "../actions/auth"
 
 
-//export const Header = ({ startLogout, currentUser, photoURL, displayName }) => (
-export const Header = ({ startLogout, currentUser }) => (
+export const Header = ({ startLogout, photoURL, displayName }) => (
+//export const Header = ({ startLogout, currentUser }) => (
     <header className="header">
         <div className="content-container">
             <div className="header__content">
@@ -15,13 +16,13 @@ export const Header = ({ startLogout, currentUser }) => (
 
                 <div className='header__user'>
                     <span className='header__user-name'>
-                    { currentUser.displayName || currentUser.email }
+                    { displayName || email }
                     </span>
-                    {/* <Link className="header__photo" to ={`/profile/${displayName}`}> */}
+                    <Link className="header__photo" to ={`/profile/${displayName}`} >
                     <div className="footer__content">
                         <img className='header__user-avatar' src={`${photoURL}`} />
                     </div>
-                    {/* </Link> */}
+                    </Link>
                     
                     <button className='button button--link' onClick={ startLogout }>Logout</button>
                 </div>
@@ -34,10 +35,10 @@ export const Header = ({ startLogout, currentUser }) => (
 
 
 const mapStateToProps = (state) => ({
-    // photoURL: state.auth.photoURL,
-    // displayName: state.auth.displayName,
-    // email: state.auth.email,
-    currentUser: state.auth.currentUser,
+    photoURL: state.auth.photoURL,
+    displayName: state.auth.displayName,
+    email: state.auth.email,
+    //currentUser: state.auth.currentUser,
 });
 
 
