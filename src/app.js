@@ -51,10 +51,12 @@ ReactDOM.render(<LoadingPage />, document.getElementById("app"))
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        const { uid, displayName, email, photoURL, providerId } = user
-        store.dispatch(login( uid, displayName, email, photoURL, providerId ))
-        console.log("log in with ", providerId)
+        const { uid, displayName, email, photoURL } = user
+        store.dispatch(login( uid, displayName, email, photoURL ))
+        console.log("log in with ")
 
+        //store.dispatch(login(user))
+        
         store.dispatch(startSetExpenses())
         .then(() => {
             renderApp()

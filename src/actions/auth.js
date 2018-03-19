@@ -1,28 +1,28 @@
 import { firebase, googleAuthProvider, emailProvider , facebookAuthProvider, githubAuthProvider } from "../firebase/firebase"
 
+
 export const login = ( uid, displayName, email, photoURL ) => ({
     type: "LOGIN",
     uid,
-    //providerId,
     displayName,
     email,
     photoURL
 })
 
 
-export const logout = () => ({
-    type: "LOGOUT"
-})
+// export const login = user => ({
+//     type: "LOGIN",
+//     user,
+// })
 
+
+export const logout = () => ({
+    type: "LOGOUT",
+})
 
 
 export const startLoginGoogle = () => {
     return () => {
-        const providerData = firebase.auth().providerData;
-        console.log('onAuthStateChanged promise：', providerData[0].providerId)
-        console.log('firebase.auth.FacebookAuthProvider.PROVIDER_ID：', firebase.auth.FacebookAuthProvider.PROVIDER_ID)
-
-
       return firebase.auth().signInWithPopup(googleAuthProvider).catch((e) => {
         return console.log(`Error: ${e}`);
       });

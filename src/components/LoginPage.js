@@ -5,6 +5,8 @@ import { Redirect, App, Route, Switch} from "react-router-dom"
 import { Button } from 'react-bootstrap';
 import { Register } from './Register';
 // export const LoginPage = ({ startLogin }) => (
+
+//export const LoginPage = ({ startLoginGoogle, startGithubLogin }) => (
 export class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -54,7 +56,7 @@ export class LoginPage extends React.Component {
 
   onCreateLoginEmail = () => {
     this.props.history.push("/Register")
-    console.log("yau")
+    console.log("yau, fiz push para o register")
 }
 
   render() {
@@ -62,30 +64,30 @@ export class LoginPage extends React.Component {
     <div className='box-layout'>
     <div className='box-layout__box'>
       <h1 className='box-layout__title'>Expensify</h1>
-      <p>It's time to get your expenses under controlsss</p>
-      <button className='button button--with-icon' onClick={this.props.startLoginGoogleProp}><i className="icon-prepend fa fa-google"/> Login with Google</button>
-      <button className='button button--with-icon' style={{"background":"#4267b2"}} onClick={this.props.startLoginFacebookProp}><i className="icon-prepend fa fa-facebook-f"/> Login with Facebook</button>
+      <p>It's time to get your expenses under control</p>
+      <button className='button button--with-icon' onClick={ this.props.startLoginGoogleProp }><i className="icon-prepend fa fa-google"/> Login with Google</button>
+      <button className='button button--with-icon' style={{"background":"#4267b2"}} onClick={ () => startLoginFacebookProp}><i className="icon-prepend fa fa-facebook-f"/> Login with Facebook</button>
       <button className='button button--with-icon' style={{"background":"#24292e"}} onClick={ () => startLogin('github') }><i className="icon-prepend fa fa-github"/> Login with Github</button>
 
       <br/>
       <br/>
       <h1>E-mail Login </h1>
-      <form onSubmit={this.onSubmit} >
+      {/* <form onSubmit={this.onSubmit} > */}
       <input
         className="form-control"
         type="text"
         placeholder="Email"
         autoFocus
-        value={this.state.email}
-        onChange={this.onEmailChange}
+        //value={this.state.email}
+       // onChange={this.onEmailChange}
       />
       <br/>
       <input
         className="form-control"
         type="password"
         placeholder="Password"
-        value={this.state.password}
-        onChange={this.onPasswordChange}
+        //value={this.state.password}
+        //onChange={this.onPasswordChange}
       />
 
       <br/>
@@ -94,19 +96,21 @@ export class LoginPage extends React.Component {
         <br/>
         <Button bsStyle="danger" onClick={this.onCreateLoginEmail} > Create Account </Button>
       </div>
-    </form>
+    {/* </form> */}
   </div>
   </div>
     );
   }
 }
+// )
 
 // );
 
 
 const mapDispatchToProps = (dispatch) => ({
-    startLogin: (provider) => dispatch(startLogin(provider)),
     startLoginGoogleProp: () => dispatch(startLoginGoogle()),
+    startLogin: (provider) => dispatch(startLogin(provider)),
+    //startLoginGoogleProp: () => dispatch(startLoginGoogle()),
     startLoginEmailProp: (email, password) => dispatch(startLoginEmail(email, password)),
 });
 
