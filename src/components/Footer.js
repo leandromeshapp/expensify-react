@@ -8,7 +8,21 @@ export const Footer = ( props ) => (
       <div className="footer__content">
         <span className="footer__title">
           Logged in via{' '}
-          {props.providerId == 'google.com' ? 'Google: ' : 'GitHub: '}
+
+          { props.providerId == "google.com" &&
+            "Google: "
+          }
+           
+          { props.providerId == "github.com" &&
+            "GitHub: "
+          }
+
+          { props.providerId == "facebook.com" &&
+            "Facebook: "
+          }
+ 
+
+          {/* {props.providerId == 'google.com' ? 'Google: ' : 'GitHub: '} */}
           {props.displayName} &lt;{props.email}&gt;
         </span>
         <img src={props.photoURL} alt="Avatar" />
