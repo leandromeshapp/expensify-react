@@ -31,6 +31,11 @@ export const startLoginGoogle = () => {
   };
 
 
+export const startLoginGithub = () => {
+    return firebase.auth().signInWithPopup(githubAuthProvider);
+}
+
+
 export const startLogin = (provider) => {
     return (dispatch) => {
         switch (provider) {
