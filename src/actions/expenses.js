@@ -33,15 +33,15 @@ export const startAddExpense = (expenseData = {}) => {
 
 
 // REMOVE EXPENSE
-//export const removeExpense = ({ id } = {}) => ({
-export const removeExpense = id => ({
+export const removeExpense = ({ id } = {}) => ({
+//export const removeExpense = id => ({
     type: "REMOVE_EXPENSE",
     id,
 })
 
 
-// export const startRemoveExpense = ({ id } = {}) => {
-export const startRemoveExpense = id => {
+export const startRemoveExpense = ({ id } = {}) => {
+//export const startRemoveExpense = id => {
     return (dispatch, getState) => {
         const uid = getState().auth.uid
         //const { uid } = getState().auth.uid

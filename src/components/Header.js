@@ -24,7 +24,7 @@ export const Header = ({ startLogout, photoURL, displayName, email }) => (
                             <img className='header__user-avatar' src={`${photoURL}`} />
                         }
                         {!photoURL &&
-                            <img className='header__user-avatar' src={`${photoURL}`} />
+                            <img className='header__user-avatar' src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg" />
                         }
                         
                     </div>

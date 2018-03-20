@@ -7,7 +7,11 @@ export const Footer = ( props ) => (
     <div className="content-container">
       <div className="footer__content">
         <span className="footer__title">
-          {props.displayName} you're logged in via{' '}
+          {props.displayName} 
+          {!props.displayName && 
+            "User "
+          }
+          &nbsp;you're logged in via{' '}
 
           { props.providerId == "google.com" &&
             "Google: "
@@ -38,11 +42,11 @@ export const Footer = ( props ) => (
 
           &lt;{props.email}&gt;
         </span>
-        { props.photoURL === "null" &&
-          <img src="/Cool Twitter Avatar Default avatar.png" />
+        {!props.photoURL &&
+          <img className='header__user-avatar' src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg" />
         }
         { props.photoURL &&
-          <img src={props.photoURL} alt="Avatar" />
+          <img className='header__user-avatar' src={props.photoURL} alt="Avatar" />
         }
         
       </div>

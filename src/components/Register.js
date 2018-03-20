@@ -110,7 +110,7 @@ export class Register extends React.Component {
             />
 
             <br/>
-            <Button className="buttonRegister" bsStyle="primary" onClick={this.onCreateLoginEmail}> Register </Button>
+            <Button className="buttonRegister" bsStyle="primary" onClick={ this.createLoginEmailProp }> Register </Button>
             <br/>
             <br/>
             <Button className="buttonRegister" bsStyle="danger" onClick={this.backHome}> Home </Button>

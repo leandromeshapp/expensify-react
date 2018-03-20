@@ -72,11 +72,13 @@ export const startLogout = () => {
 
 export const createLoginEmail = (email, password) => {
     return () => {
+        return console.log("sucess")
         return firebase.auth().createUserWithEmailAndPassword(email, password).catch((e) => {
-            return e;
+            return console.log(e);
         });
     };
 };
+
 
   
 export const startLoginEmail = (email, password) => {
