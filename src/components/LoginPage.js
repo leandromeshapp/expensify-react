@@ -6,6 +6,8 @@ import { Button } from 'react-bootstrap';
 import { Register } from './Register';
 // export const LoginPage = ({ startLogin }) => (
 
+let visibility = false;
+
 //export const LoginPage = ({ startLoginGoogle, startGithubLogin }) => (
 export class LoginPage extends React.Component {
   constructor(props) {
@@ -17,6 +19,12 @@ export class LoginPage extends React.Component {
       passwordError: '',
       generalError: '',
     };
+  }
+
+  toggleVisibility = () => {
+    visibility = !visibility
+
+    this.forceUpdate()
   }
 
   onEmailChange = (e) => {
@@ -59,39 +67,58 @@ export class LoginPage extends React.Component {
     console.log("yau, fiz push para o register")
 }
 
+  visibility = !visibility
   render() {
     return (
     <div className='box-layout'>
-    <div className='box-layout__box'>
-      <h1 className='box-layout__title'>Expensify</h1>
-      <p>It's time to get your expenses under control</p>
-      {/* #dd4b39 */}
-      <button className='button button--with-icon' style={{"background":"#dd4b39"}} onClick={ this.props.startLoginGoogleProp }><i className="icon-prepend fa fa-google"/> Login with Google</button>
-      <button className='button button--with-icon' style={{"background":"#4267b2"}} onClick={ this.props.startLoginFacebookProp }><i className="icon-prepend fa fa-facebook-f"/> Login with Facebook</button>
-      <button className='button button--with-icon' style={{"background":"#24292e"}} onClick={ this.props.startLoginGithubProp }><i className="icon-prepend fa fa-github"/> Login with Github</button>
-      <button className='button button--with-icon' style={{"background":"#1dcaff"}} onClick={ this.props.startLoginTwitterProp }><i className="icon-prepend fa fa-twitter"/> Login with Twitter</button>
+      <div className='box-layout__box'>
+        <h1 className='box-layout__title'>Expensify</h1>
+        <p>It's time to get your expenses under control</p>
+        {/* #dd4b39 */}
+
+        <Button bsStyle="info" onClick={this.toggleVisibility}>
+            {visibility ? 'Hide Social Login Options' : 'Show Social Login Options'}
+        </Button>
+
+        {visibility && (
+          <div>
+            <div className="buttonLogin">
+              <button className='button button--with-icon' style={{"background":"#dd4b39"}} onClick={ this.props.startLoginGoogleProp }><i className="icon-prepend fa fa-google"/> Login with Google</button>
+              <button className='button button--with-icon' style={{"background":"#4267b2"}} onClick={ this.props.startLoginFacebookProp }><i className="icon-prepend fa fa-facebook-f"/> Login with Facebook</button>
+              <button className='button button--with-icon' style={{"background":"#24292e"}} onClick={ this.props.startLoginGithubProp }><i className="icon-prepend fa fa-github"/> Login with Github</button>
+              <button className='button button--with-icon' style={{"background":"#1dcaff"}} onClick={ this.props.startLoginTwitterProp }><i className="icon-prepend fa fa-twitter"/> Login with Twitter</button>
+            </div>
+          </div>
+        )}
 
 
-      <br/>
-      <br/>
-      <h1>E-mail Login </h1>
-      <form onSubmit={this.onSubmit} >
-      <input
-        className="form-control"
-        type="text"
-        placeholder="Email"
-        autoFocus
-        value={this.state.email}
-        onChange={this.onEmailChange}
-      />
-      <br/>
-      <input
-        className="form-control"
-        type="password"
-        placeholder="Password"
-        value={this.state.password}
-        onChange={this.onPasswordChange}
-      />
+        {/* <div className="buttonLogin">
+          <button className='button button--with-icon' style={{"background":"#dd4b39"}} onClick={ this.props.startLoginGoogleProp }><i className="icon-prepend fa fa-google"/> Login with Google</button>
+          <button className='button button--with-icon' style={{"background":"#4267b2"}} onClick={ this.props.startLoginFacebookProp }><i className="icon-prepend fa fa-facebook-f"/> Login with Facebook</button>
+          <button className='button button--with-icon' style={{"background":"#24292e"}} onClick={ this.props.startLoginGithubProp }><i className="icon-prepend fa fa-github"/> Login with Github</button>
+          <button className='button button--with-icon' style={{"background":"#1dcaff"}} onClick={ this.props.startLoginTwitterProp }><i className="icon-prepend fa fa-twitter"/> Login with Twitter</button>
+        </div> */}
+
+        <br/>
+        <br/>
+        <h1>E-mail Login </h1>
+        <form onSubmit={this.onSubmit} >
+        <input
+          className="form-control"
+          type="text"
+          placeholder="Email"
+          autoFocus
+          value={this.state.email}
+          onChange={this.onEmailChange}
+        />
+        <br/>
+        <input
+          className="form-control"
+          type="password"
+          placeholder="Password"
+          value={this.state.password}
+          onChange={this.onPasswordChange}
+        />
 
       <br/>
       <div className="botaoMargin">

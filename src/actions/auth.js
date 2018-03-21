@@ -1,21 +1,28 @@
 import { firebase, googleAuthProvider, emailProvider , facebookAuthProvider, githubAuthProvider, twitterAuthProvider } from "../firebase/firebase"
 
 
-export const login = ( uid, providerId, displayName, email, photoURL ) => ({
+export const login = ( uid, currentUser ) => ({
     type: "LOGIN",
     uid,
-    providerId,
-    displayName,
-    email,
-    photoURL,
-    //currentUser,
+    currentUser,
 })
 
 
-// export const login = user => ({
-//     type: "LOGIN",
-//     user,
+// export const teste = ( uid, providerId, displayName, email, photoURL ) => ({
+//     type: "TESTE",
+//     uid,
+//     providerId,
+//     displayName,
+//     email,
+//     photoURL,
 // })
+
+
+export const name = ( displayName ) => ({
+    type: "CHANGE",
+    displayName,
+})
+
 
 
 export const logout = () => ({
@@ -23,27 +30,44 @@ export const logout = () => ({
 })
 
 
+
 export const startLoginGoogle = () => {
     return () => {
-      return firebase.auth().signInWithPopup(googleAuthProvider).catch((e) => {
-        return console.log(`Error: ${e}`);
-      });
-    };
-  };
+      return firebase.auth().signInWithPopup(googleAuthProvider)
+      .catch((e) => {
+        return console.log(`Error: ${e}`)
+      })
+    }
+  }
 
 
 export const startLoginGithub = () => {
-    return firebase.auth().signInWithPopup(githubAuthProvider);
+    return () => {
+    return firebase.auth().signInWithPopup(githubAuthProvider)
+    .catch((e) => {
+        return console.log(`Error: ${e}`)
+      })
+    }
 }
 
 
 export const startLoginFacebook = () => {
-    return firebase.auth().signInWithPopup(facebookAuthProvider);
+    return () => {
+    return firebase.auth().signInWithPopup(facebookAuthProvider)
+    .catch((e) => {
+        return console.log(`Error: ${e}`)
+      })
+    }
 }
 
 
 export const startLoginTwitter = () => {
-    return firebase.auth().signInWithPopup(twitterAuthProvider);
+    return () => {
+    return firebase.auth().signInWithPopup(twitterAuthProvider)
+    .catch((e) => {
+        return console.log(`Error: ${e}`)
+      })
+    }
 }
 
 
@@ -52,12 +76,14 @@ export const startLogin = (provider) => {
         switch (provider) {
             case 'google':    
                 return firebase.auth().signInWithPopup(googleAuthProvider)
+            case 'facebook':
+                return firebase.auth().signInWithPopup(facebookAuthProvider)
+            case 'github':
+                return firebase.auth().signInWithPopup(githubAuthProvider)
+            case 'twitter':
+                return firebase.auth().signInWithPopup(twitterAuthProvider)            
             case 'email':
                 return firebase.auth().signInWithEmailAndPassword(emailProvider)
-            case 'facebook':
-                return firebase.auth().signInWithPopup(facebookAuthProvider);
-            case 'github':
-                return firebase.auth().signInWithPopup(githubAuthProvider);
         }
     }
 }
@@ -72,19 +98,49 @@ export const startLogout = () => {
 
 export const createLoginEmail = (email, password) => {
     return () => {
-        return console.log("sucess")
-        return firebase.auth().createUserWithEmailAndPassword(email, password).catch((e) => {
-            return console.log(e);
-        });
-    };
-};
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .catch(function(error) {
+            console.log(error)
+        })
+    }
+}
 
 
-  
+export const createDisplayName = ( displayName ) => {
+    //var user = firebase.auth().currentUser;
+    return () => {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if(user) {
+                console.log("signed in. updating")
+                user.updateProfile({
+                    displayName,
+                    photoURL: "http://www.murketing.com/journal/wp-content/uploads/2009/04/nopic_192-150x150.gif"
+                }).then(function() {
+                        console.log("sucess")
+                }).catch(function(error) {
+                        console.log("error: ", error)
+                });
+            } else {
+                console.log("not signed in")
+            }
+        })
+    }
+}
+    // user.updateProfile({
+    //     displayName,
+    //     photoURL: "https://example.com/jane-q-user/profile.jpg"
+    // }).then(function() {
+    //     console.log("sucess")
+    //     }).catch(function(error) {
+    //         console.log("error: ", error)
+    //     });
+
+
 export const startLoginEmail = (email, password) => {
     return () => {
-        return firebase.auth().signInWithEmailAndPassword(email, password).catch((e) => {
-            return console.log(e);
-        });
-    };
+        return firebase.auth().signInWithEmailAndPassword(email, password)
+        .catch((e) => {
+            return console.log(e)
+        })
+    }
 }

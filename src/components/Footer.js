@@ -2,51 +2,54 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-export const Footer = ( props ) => (
+
+export const Footer = ({ currentUser }) => (
   <footer className="footer">
     <div className="content-container">
       <div className="footer__content">
         <span className="footer__title">
-          {props.displayName} 
-          {!props.displayName && 
-            "User "
+          { currentUser.displayName } 
+          { !currentUser.displayName && 
+            "User is that you"
           }
           &nbsp;you're logged in via{' '}
-
-          { props.providerId == "google.com" &&
+          
+          { currentUser.providerId &&
+            console.log("teste: ",currentUser)
+          }
+          { currentUser.providerId == "google.com" &&
             "Google: "
           }
            
-          { props.providerId == "github.com" &&
+          { currentUser.providerId == "github.com" &&
             "GitHub: "
           }
 
-          { props.providerId == "facebook.com" &&
+          { currentUser.providerId == "facebook.com" &&
             "Facebook: "
           }
  
-          { props.providerId == "twitter.com" &&
+          { currentUser.providerId == "twitter.com" &&
             "Twitter: "
           }
 
-          {
-            props.providerId == "password" &&
+          { currentUser.providerId == "firebase" &&
             "E-mail: "
           }
 
           {/* {props.providerId == 'google.com' ? 'Google: ' : 'GitHub: '} */}
 
-          { props.displayName === "null" &&
+          { currentUser.displayName == "null" &&
             "teste display name"
           }
 
-          &lt;{props.email}&gt;
+          &lt;{currentUser.email}&gt;
         </span>
-        {!props.photoURL &&
+          {!currentUser.photoURL &&
           <img className='header__user-avatar' src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg" />
-        }
-        { props.photoURL &&
-          <img className='header__user-avatar' src={props.photoURL} alt="Avatar" />
+          }
+        { currentUser.photoURL &&
+          <img className='header__user-avatar' src={currentUser.photoURL} alt="Avatar" />
         }
         
       </div>
@@ -55,10 +58,7 @@ export const Footer = ( props ) => (
 );
 
 const mapStateToProps = (state) => ({
-  providerId: state.auth.providerId,
-  email: state.auth.email,
-  displayName: state.auth.displayName,
-  photoURL: state.auth.photoURL
+  currentUser: state.auth.currentUser,
 });
 
 //export default Footer;

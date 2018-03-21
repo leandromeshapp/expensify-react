@@ -50,57 +50,27 @@ const renderApp = () => {
 ReactDOM.render(<LoadingPage />, document.getElementById("app"))
 
 firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        console.log('User logged in with firebase UID: ',user.uid);
+        const { currentUser } = firebase.auth()
+        //var { user } = firebase.auth().currentUser;
+        currentUser.providerData.forEach((profile) => {
+            console.log(`Sign-in provider: ${profile.providerId}`)
+            console.log(`Provider-specific UID: ${profile.uid}`)
+            console.log(`Name: ${profile.displayName}`)
+            console.log(`Email: ${profile.email}`)
+            console.log(`Photo URL: ${profile.photoURL}`)
 
-    // if (user) {
-    //     console.log('User logged in with firebase ID: ', user.uid);
-    //     const { currentUser } = firebase.auth();
-    //     currentUser.providerData.forEach((profile) => {
-    //     console.log(`Sign-in provider:  ${profile.providerId}`);
-    //     console.log(`Provider-specific UID: ${profile.uid}`);
-    //     console.log(`Name: ${profile.displayName}`);
-    //     console.log(`Email: ${profile.email}`);
-    //     console.log(`Photo URL: ${profile.photoURL}`);
-    // });
-    //     if (user.providerId == "password") {
-    //         store.dispatch(login(user.uid, user.currentUser));
-    //     } else {
-    //         store.dispatch(login(user.uid, user.displayName, user.email, user.photoURL));
-    //     }
-        
-    //     store.dispatch(startSetExpenses()).then(() => {
-    //         renderApp();
-    //     });
-    //         if (history.location.pathname === '/') {
-    //           history.push('/dashboard');
-    //         }
-
-
-
-        if (user) {
-        console.log('User logged in with firebase UID: ', user.uid);
-        user.providerData.forEach(function (profile) {
-            console.log("Sign-in provider: " + profile.providerId);
-            console.log("  Provider-specific UID: " + profile.uid);
-            console.log("  Name: " + profile.displayName);
-            console.log("  Email: " + profile.email);
-            console.log("  Photo URL: " + profile.photoURL);
-
-            store.dispatch(login( profile.uid, profile.providerId, profile.displayName, profile.email, profile.photoURL ))
-        });
-
-        //const { uid, displayName, email, photoURL } = user
-        //store.dispatch(login( uid, displayName, email, photoURL ))
-        console.log("log in with ")
-
-        //store.dispatch(login(user))
-        
-        store.dispatch(startSetExpenses())
-        .then(() => {
+            store.dispatch(login(user.uid, currentUser,  user.displayName))
+        })
+        // store.dispatch(login(user.uid, currentUser, profile.photoURL))
+        store.dispatch(startSetExpenses()).then(() => {
             renderApp()
+        })
+        console.log("logged in with ")
             if (history.location.pathname === "/") {
                 history.push("/dashboard")
             }
-        })
     } else {
         console.log('log out');
         store.dispatch(logout())

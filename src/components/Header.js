@@ -2,11 +2,11 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 
+import { startAddProfileInfo } from "../actions/user"
 import { startLogout } from "../actions/auth"
 
 
-export const Header = ({ startLogout, photoURL, displayName, email }) => (
-//export const Header = ({ startLogout, currentUser }) => (
+export const Header = ({ id, startLogout, currentUser }) => (
     <header className="header">
         <div className="content-container">
             <div className="header__content">
@@ -16,14 +16,16 @@ export const Header = ({ startLogout, photoURL, displayName, email }) => (
 
                 <div className='header__user'>
                     <span className='header__user-name'>
-                    { displayName || email }
+                    { currentUser.displayName || currentUser.email }
                     </span>
-                    <Link className="header__photo" to ={`/profile/${displayName}`} >
+
+                    
+                    <Link className="header__photo" to ={`/profile`} >
                     <div className="footer__content">
-                        {photoURL &&
-                            <img className='header__user-avatar' src={`${photoURL}`} />
+                        {currentUser.photoURL &&
+                            <img className='header__user-avatar' src={`${currentUser.photoURL}`} />
                         }
-                        {!photoURL &&
+                        {!currentUser.photoURL &&
                             <img className='header__user-avatar' src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg" />
                         }
                         
@@ -41,16 +43,16 @@ export const Header = ({ startLogout, photoURL, displayName, email }) => (
 
 
 const mapStateToProps = (state) => ({
-    photoURL: state.auth.photoURL,
-    displayName: state.auth.displayName,
-    email: state.auth.email,
-    //currentUser: state.auth.currentUser,
+    currentUser: state.auth.currentUser,
+
+    //user: state.expenses.find((expense) => expense.id === props.match.params.id)
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
-    startLogout: () => dispatch(startLogout())
+    startLogout: () => dispatch(startLogout()),
+
+    startAddProfileInfo: (info) => dispatch(startAddProfileInfo(info))
 })
- 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

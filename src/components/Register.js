@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createLoginEmail } from '../actions/auth';
+import { createLoginEmail, createDisplayName } from '../actions/auth';
+import { startAddProfileInfo} from "../actions/user"
 import validator from 'validator';
 import { Button } from 'react-bootstrap';
 
@@ -8,7 +9,7 @@ export class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        name: '',
+        displayName: '',
         email: '',
         password: '',
         repeatPassword: '',
@@ -22,9 +23,9 @@ export class Register extends React.Component {
     this.props.history.push("/")
 }
 
-  onNameChange = (e) => {
-    const name = e.target.value;
-    this.setState(() => ({ name }));
+  ondisplayNameChange = (e) => {
+    const displayName = e.target.value;
+    this.setState(() => ({ displayName }));
   }
 
   onEmailChange = (e) => {
@@ -44,25 +45,16 @@ export class Register extends React.Component {
 
   onCreateLoginEmail = (e) => {
     e.preventDefault();
-    this.setState(() => ({ emailError: '' , passwordError: '' }));
 
+    // this.props.startAddProfileInfo(info)
 
-    if (validator.isEmail(this.state.email) && this.state.password.length >= 6) {
-      return this.props.createLoginEmailProp(this.state.email, this.state.password).then((resErr) => {
-        if (resErr.code === 'auth/email-already-in-use') {
-          console.log('sahdgsjfgkksdjhfgdhjsagfjdgsahjfasdjfkghsad');
-          return this.props.startLoginGoogleProp();
-        }
-        return undefined;
-      });
-    }
-    if (!validator.isEmail(this.state.email)) {
-      this.setState(() => ({ emailError: 'Invalid email' }));
-    }
-    if (this.state.password.length < 6) {
-      this.setState(() => ({ passwordError: 'Passwords must be at least six characters' }));
-    }
-    return undefined;
+    this.props.createLoginEmailProp(this.state.email, this.state.password)
+
+    this.props.createDisplayNameProp(this.state.displayName)
+
+    // setTimeout(function(){ 
+    //  this.props.history.push("/")
+    // }, 2000);
   }
 
   render() {
@@ -75,8 +67,8 @@ export class Register extends React.Component {
                 type="text"
                 placeholder="Nome"
                 autoFocus
-                value={this.state.name}
-                onChange={this.onNameChange}
+                value={this.state.displayName}
+                onChange={this.ondisplayNameChange}
             />
             <br/>
             <div className="testeSs">
@@ -110,7 +102,7 @@ export class Register extends React.Component {
             />
 
             <br/>
-            <Button className="buttonRegister" bsStyle="primary" onClick={ this.createLoginEmailProp }> Register </Button>
+            <Button className="buttonRegister" bsStyle="primary" onClick={ this.onCreateLoginEmail }> Register </Button>
             <br/>
             <br/>
             <Button className="buttonRegister" bsStyle="danger" onClick={this.backHome}> Home </Button>
@@ -119,12 +111,14 @@ export class Register extends React.Component {
     );
   }
 }
-
 // );
 
 
 const mapDispatchToProps = (dispatch) => ({
-    createLoginEmailProp: (email, password) => dispatch(createLoginEmail(email, password)),
+    createDisplayNameProp: (displayName) => dispatch(createDisplayName( displayName )),
+    createLoginEmailProp: (email, password) => dispatch(createLoginEmail( email, password )),
+
+    // startAddProfileInfo: (info) => dispatch(startAddProfileInfo(info))
 });
 
 export default connect(undefined, mapDispatchToProps)(Register);

@@ -6,9 +6,11 @@ import createHistory from 'history/createBrowserHistory'
 import AddExpensePage from "../components/AddExpensePage"
 import EditExpensePage from "../components/EditExpensePage"
 import ExpenseDashboardPage from "../components/ExpenseDashboardPage"
+import Profile from "../components/Profile"
 import NotFoundPage from "../components/NotFoundPage"
 import LoginPage from "../components/LoginPage"
 import Register from "../components/Register"
+
 
 import Terms from "../components/Terms"
 import Privacy from "../components/Privacy"
@@ -35,6 +37,7 @@ const AppRouter = () => (
             <Route exact path="/privacy" component={Privacy} />
 
             <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
+            <Route path="/profile" component={Profile} />
             <PrivateRoute path="/create" component={AddExpensePage} />
             <PrivateRoute path="/edit/:id" component={EditExpensePage} />
 
