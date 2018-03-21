@@ -13,7 +13,7 @@ export const Header = ({ id, startLogout, currentUser }) => (
                 <Link className="header__title" to ="/dashboard">
                     <h1> Expensify </h1>
                 </Link>
-
+			apagar
                 <div className='header__user'>
                     <span className='header__user-name'>
                     { currentUser.displayName || currentUser.email }
