@@ -1,73 +1,44 @@
 import React from "react"
-import moment from "moment"
-import { SingleDatePicker } from "react-dates"
-
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextField from 'material-ui/TextField';
-
-import {grey50, red50, black, white} from 'material-ui/styles/colors';
-import {fullBlack} from 'material-ui/styles/colors';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
 
 export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            displayName: props.expense ? props.expense.description : "",
-            note: props.expense ? props.expense.note : "",
-            amount: props.expense ? (props.expense.amount / 100).toString() : "",
-            createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
-            calendarFocused: false,
+            displayName: props.info ? props.info.displayName : "",
+            email: props.info ? props.info.email : "",
+            photoURL: props.info ? props.info.photoURL : "",
             error: ""
         }
     }
     
 
-    onDescriptionChange = (e) => {
-        const description = e.target.value
-        this.setState(() => ({ description}))
+    ondisplayNameChange = (e) => {
+        const displayName = e.target.value
+        this.setState(() => ({ displayName}))
     }
 
-    onNoteChange = (e) => {
-        const note = e.target.value
-        this.setState(() => ({ note }))
-    }
-
-    onAmountChange = (e) => {
-        const amount = e.target.value
-
-        if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) { //regex101
-            this.setState(() => ({ amount }))
-        }
-    }
-
-    onDateChange = (createdAt) => {
-        if (createdAt) {
-            this.setState(() => ({ createdAt }))
-        }
+    onEmailChange = (e) => {
+        const email = e.target.value
+        this.setState(() => ({ email }))
     }
 
 
-    onFocusChange = ({ focused }) => {
-        this.setState(() => ({ calendarFocused: focused }))
+    onPhotoURLChange = (e) => {
+        const photoURL = e.target.value
+        this.setState(() => ({ photoURL }))
     }
+
 
     onSubmit = (e) => {
         e.preventDefault();
 
-        if (!this.state.description || !this.state.amount) {
-            this.setState(() => ({ error: "Please provide description and amount." }))
-        } else {
-            this.setState(() => ({ error: "" }))
-            this.props.onSubmit({
-                description: this.state.description,
-                amount: parseFloat(this.state.amount, 10) * 100,
-                createdAt: this.state.createdAt.valueOf(),
-                note: this.state.note
-            })
-        }
+        this.setState(() => ({ error: "" }))
+
+        this.props.onSubmit({
+            displayName: this.state.displayName,
+            email: this.state.email,
+            photoURL: this.state.photoURL,
+        })
     }
 
 
@@ -78,49 +49,30 @@ export default class ExpenseForm extends React.Component {
                 <input
                     className="text-input"
                     type = "text"
-                    placeholder = "Description"
+                    placeholder = "Display Name"
                     autoFocus
-                    value={this.state.description}
-                    onChange={this.onDescriptionChange}
+                    value={this.state.displayName}
+                    onChange={this.ondisplayNameChange}
                 />
 
                 <input 
                     className="text-input"
                     type = "text"
-                    placeholder = "Amount"
-                    value={this.state.amount}
-                    onChange={this.onAmountChange}
+                    placeholder = "Email"
+                    value={this.state.email}
+                    onChange={this.onEmailChange}
                 />
 
-                <SingleDatePicker 
-                    date = { this.state.createdAt }
-                    onDateChange = { this.onDateChange }
-                    focused = { this.state.calendarFocused }
-                    onFocusChange = { this.onFocusChange }
-                    numberOfMonths = { 1 }
-                    isOutsideRange = {() => false }
+                <input 
+                    className="text-input"
+                    type = "text"
+                    placeholder = "Photo URL"
+                    value={this.state.photoURL}
+                    onChange={this.onPhotoURLChange}
                 />
-
-                <textarea
-                    className="text-area"
-                    placeholder = "Add a note for your expense (optional)" 
-                    value={this.state.note}
-                    onChange={this.onNoteChange}
-                >
-                </textarea>
-
-                {/* <MuiThemeProvider muiTheme={getMuiTheme()}>
-                    <div>
-                        <TextField
-                            hintText="Add a note for your expense (optional)"
-                            value={this.state.note}
-                            onChange={this.onNoteChange}
-                        />
-                    </div>
-                </MuiThemeProvider> */}
 
                 <div>
-                    <button className="button"> Save Expense </button>
+                    <button className="button"> Save Profile </button>
                 </div>
             </form>
         )

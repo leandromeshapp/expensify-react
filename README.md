@@ -10,3 +10,5 @@ Expensify App with Firebase + Redux
 ### - Deploy it to custom my domain
 ### - Show name and photo near logout button ✓
 ### - Show login info in footer? ✓
+
+##test
