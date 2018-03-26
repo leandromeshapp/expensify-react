@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Leandro Almeida",
-  "homepage": "http://leandromeshapp.github.io/expensify-react"
+  "homepage": "http://leandromeshapp.github.io/expensify-react",
   "license": "MIT",
   "scripts": {
     "build:dev": "webpack",
@@ -12,7 +12,7 @@
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
     "start": "node server/server.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
     "heroku-postbuild": "yarn run build:prod"
   },
   "dependencies": {
