@@ -1,3 +1,73 @@
+import React from "react"
+import { connect } from "react-redux" 
+import ProfileForm from "./ProfileForm"
+
+import { startEditProfile, editProfileInfo } from "../actions/user"
+
+// const Profile = ({ currentUser }) => {
+//     return (
+//     <div>
+//         <p> { currentUser.displayName } </p>
+//         <p>  { currentUser.providerId } </p>
+//         <p>   { currentUser.photoURL }  </p>
+//         <p>    { currentUser.email }    </p>
+//     </div>
+//     )
+// }
+
+//export class EditProfile extends React.Component {
+export const EditProfile = ({ currentUser }) => {
+
+    const onSubmit = (info) => {
+        this.props.startEditProfile(this.props.info, info)
+        this.props.history.push("/")
+     }
+    const ondisplayNameChange = (e) => {
+        const displayName = e.target.value;
+        this.setState(() => ({ displayName }));
+    }
+
+    //render() {
+        return (  
+            <div>
+                <div className="page-header">
+                    <div className="content-container">
+                        <h1 className="page-header__title"> Edit Profile </h1>
+                    </div>
+                </div>
+                <div className="content-container">
+                    <ProfileForm 
+                        info = {this.props.info}
+                        onSubmit = {this.onSubmit}
+                    />
+
+                    <p> { currentUser.displayName } </p>
+                    <p>  { currentUser.providerId } </p>
+                    <p>   { currentUser.photoURL }  </p>
+                    <p>    { currentUser.email }    </p>
+            </div>
+        </div>
+        )
+    //}
+}
+
+
+const mapStateToProps = (state, props) => ({
+    currentUser: state.auth.currentUser,
+    info: state.infos.find((info) => info.id === props.match.params.id),
+})
+
+const mapDispatchToProps = (dispatch, props) => ({
+    startEditProfile: (id, info) => dispatch(startEditProfile(id, info)),
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)
+
+
+
+
+
 // import React from "react"
 // import { connect } from "react-redux" 
 
@@ -96,58 +166,3 @@
 // })
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Profile)
-
-
-
-
-
-
-
-import React from "react"
-import { connect } from "react-redux" 
-import ProfileForm from "./ProfileForm"
-
-import { startEditProfile } from "../actions/user"
-export class EditProfile extends React.Component {
-
-    onSubmit = (info) => {
-        this.props.startEditProfile(this.props.info.id, info)
-        this.props.history.push("/")
-    }
-
-    render() {
-        return (  
-            <div>
-                <div className="page-header">
-                    <div className="content-container">
-                        <h1 className="page-header__title"> Edit Profile </h1>
-                    </div>
-                </div>
-                <div className="content-container">
-                    <ExpenseForm 
-                        info = {this.props.info}
-                        onSubmit = {this.onSubmit}
-                    />
-
-            </div>
-                <button 
-                    className="button button--secondary" 
-                    onClick={this.openModal}> 
-                    Remove Expense 
-                </button>
-        </div>
-        )
-    }
-}
-
-
-const mapStateToProps = (state, props) => ({
-    info: state.infos.find((info) => info.id === props.match.params.id)
-})
-
-const mapDispatchToProps = (dispatch, props) => ({
-    startEditProfile: (id, info) => dispatch(startEditProfile(id, info)),
-})
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)

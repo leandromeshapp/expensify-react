@@ -108,17 +108,6 @@ export default class ExpenseForm extends React.Component {
                     onChange={this.onNoteChange}
                 >
                 </textarea>
-
-                {/* <MuiThemeProvider muiTheme={getMuiTheme()}>
-                    <div>
-                        <TextField
-                            hintText="Add a note for your expense (optional)"
-                            value={this.state.note}
-                            onChange={this.onNoteChange}
-                        />
-                    </div>
-                </MuiThemeProvider> */}
-
                 <div>
                     <button className="button"> Save Expense </button>
                 </div>

@@ -6,6 +6,7 @@
   "homepage": "http://leandromeshapp.github.io/expensify-react",
   "license": "MIT",
   "scripts": {
+    "build": "react-scripts build",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
@@ -43,6 +44,7 @@
     "react-modal": "^3.3.1",
     "react-redux": "5.0.5",
     "react-router-dom": "4.2.2",
+    "react-scripts": "^1.1.1",
     "redux": "3.7.2",
     "redux-mock-store": "1.2.3",
     "redux-thunk": "2.2.0",
