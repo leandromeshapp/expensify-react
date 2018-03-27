@@ -18,6 +18,15 @@ export class EditProfile extends React.Component {
             error: ""
         }
     }
+
+    componentWillMount() {
+        this.setState({
+            ...this.state,
+            displayName: this.props.displayName,
+            email: this.props.email,
+            photoURL: this.props.photoURL
+        })
+    }
     
     onSubmit = (info) => {
         this.props.startEditProfile(this.props.info, info)
@@ -26,17 +35,16 @@ export class EditProfile extends React.Component {
 
         e.preventDefault();
 
-        // if (!this.state.displayName || !this.state.email) {
-        //     this.setState(() => ({ error: "Please provide a name and email." }))
-        // } else {
-        //     this.setState(() => ({ error: "" }))
-        //     this.props.onSubmit({
-        //         description: this.state.description,
-        //         amount: parseFloat(this.state.amount, 10) * 100,
-        //         createdAt: this.state.createdAt.valueOf(),
-        //         note: this.state.note
-        //     })
-        // }
+        if (!this.state.displayName || !this.state.email) {
+            this.setState(() => ({ error: "Please provide a name and email." }))
+        } else {
+            this.setState(() => ({ error: "" }))
+            this.props.onSubmit({
+                displayName: this.state.description,
+                email: this.state.email,
+                photoURL: this.state.photoURL
+            })
+        }
     }
 
     onTesteChange = (e) => {
@@ -65,13 +73,6 @@ export class EditProfile extends React.Component {
     }
 
     render() {
-        const displayNameLET = this.props.displayName
-        let emailLET = this.props.email
-        let photoURLLET = this.props.photoURL
-        let providerIdLET = this.props.providerId
-
-        const teste = "teste"
-
         return (  
             <div>
                 <div className="page-header">
@@ -89,7 +90,7 @@ export class EditProfile extends React.Component {
                     type = "text"
                     placeholder = "Display Name"
                     autoFocus
-                    value={displayNameLET}
+                    value={this.state.displayName}
                     onChange={this.onDisplayNameChange}
                 />
 
@@ -98,7 +99,7 @@ export class EditProfile extends React.Component {
                     className="text-input"
                     type = "text"
                     placeholder = "Email"
-                    value={emailLET}
+                    value={this.state.email}
                     onChange={this.onEmailChange}
                 />
 
@@ -106,16 +107,8 @@ export class EditProfile extends React.Component {
                     className="text-input"
                     type = "text"
                     placeholder = "Photo URL"
-                    value={photoURLLET}
+                    value={this.state.photoURL}
                     onChange={this.onPhotoURLChange}
-                />
-
-                <input 
-                    className="text-input"
-                    type = "text"
-                    placeholder = "PROVIDER"
-                    value={providerIdLET}
-                    onChange={this.onTesteChange}
                 />
 
                 <div>
