@@ -6,50 +6,35 @@ export const addProfileInfo = (info) => ({
     info,
 })
 
-// // START ADD PROFILE INFO
-// export const startAddProfileInfo = (infoData = {}) => {
-//     return (dispatch, getState) => {
-//         const { uid } = getState().auth
+// START ADD PROFILE INFO
+export const startAddProfileInfo = (infoData = {}) => {
+    return (dispatch, getState) => {
+    const { uid } = getState().auth
 
-//         return () => {
-//             firebase.auth().onAuthStateChanged(function(user) {
-//                 if(user) {
-//                     console.log("signed in. ADDING userInfo")
-//                     const {
-//                         displayName,
-//                         email,
-//                         photoURL
-//                     } = infoData
+    return () => {
+        firebase.auth().onAuthStateChanged(function(user) {
+        if(user) {
+            console.log("Signed In. Adding User Info in users/uid/info")
+            const {
+                displayName,
+                email,
+                photoURL
+            } = infoData
 
-//                     const info = { displayName, email, photoURL }
-//                     return database.ref(`usersInfo/${uid}`).push(info)
-//                     .then((ref) => {
-//                         dispatch(addProfileInfo({
-//                             id: ref.key,
-//                             ...info,
-//                         }))
-//                     })
-//                 } else {
-//                     console.log("not signed in")
-//                 }
-//             })
-//         }
-    
-//         // const {
-//         //     displayName = uid.displayName, 
-//         //     email = uid.email, 
-//         //     photoURL = uid.photoURL
-//         // } = infoData
-//         // const info = { displayName, email, photoURL }
-//         // return database.ref(`usersInfo/${uid}`).push(info)
-//         // .then((ref) => {
-//         //     dispatch(addProfileInfo({
-//         //         id: ref.key,
-//         //         ...info,
-//         //     }))
-//         // })
-//     }
-// }
+            const info = { displayName, email, photoURL }
+            return database.ref(`users/${uid}/info`).push(info)
+            .then((ref) => {
+                dispatch(addProfileInfo({
+                    id: ref.key,
+                    ...info,
+                }))
+            })} else {
+                console.log("Not signed in. not adding user info")
+            }
+        })
+    }
+    }
+}
 
 
 
@@ -62,15 +47,38 @@ export const editProfileInfo = (id, updates) => ({
 
 
 // START EDIT PROFILE
-export const startEditProfile = (id, updates) => {
-    return (dispatch, getState) => {
-        const { uid } = getState().auth
-        return database.ref(`users/${uid}`)
-        .update(updates)
-        .then(() => {
-            dispatch(editProfileInfo(id, updates));
-        });
-    };
+// export const startEditProfile = (id, updates) => {
+    // return (dispatch, getState) => {
+    //     const { uid } = getState().auth
+    //     return database.ref(`users/${uid}/info`)
+    //     .update(updates)
+    //     .then(() => {
+    //         dispatch(editProfileInfo(id, updates));
+    //     });
+    // };
+
+
+export const startEditProfile = ( id, updates, displayName, email, photoURL) => {
+    return () => {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if(user) {
+                console.log("signed in. updating...")
+                user.updateProfile({
+                    displayName,
+                    email,
+                    photoURL
+                }).then(function() {
+                        console.log("UPDATED! See: ")
+                }).catch(function(error) {
+                        console.log("error: ", error)
+                });
+            } else {
+                console.log("Not Signed In. No Update")
+            }
+        })
+    }
+
+
 };
 
 
@@ -82,11 +90,10 @@ export const setProfileInfo = (info) => ({
 })
 
 
-
 export const startSetProfile = () => {
     return (dispatch, getState) => {
         const { uid } = getState().auth
-        return database.ref(`usersInfo/${uid}/info`).once("value")
+        return database.ref(`users/${uid}/info`).once("value")
         .then((snapshot) => {
             const info = []
 

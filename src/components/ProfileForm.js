@@ -30,11 +30,9 @@ export default class ExpenseForm extends React.Component {
 
 
     onSubmit = (e) => {
-        e.preventDefault();
-
         this.setState(() => ({ error: "" }))
 
-        this.props.onSubmit({
+        this.setState({
             displayName: this.state.displayName,
             email: this.state.email,
             photoURL: this.state.photoURL,

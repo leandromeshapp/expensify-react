@@ -2,63 +2,71 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+//export const Footer = ({ currentUser }) => (
+export class Footer extends React.Component {
+  render() {
+    let providerIdLET = this.props.providerId
+    let emailLET = this.props.email
+    let photoURLLET = this.props.photoURL
+    let displayNameLET = this.props.displayName
 
-export const Footer = ({ currentUser }) => (
-  <footer className="footer">
-    <div className="content-container">
-      <div className="footer__content">
-        <span className="footer__title">
-          { currentUser.displayName } 
-          { !currentUser.displayName && 
-            "User is that you"
-          }
-          &nbsp;you're logged in via{' '}
-          
-          { currentUser.providerId &&
-            console.log("teste: ",currentUser)
-          }
-          { currentUser.providerId == "google.com" &&
-            "Google: "
-          }
-           
-          { currentUser.providerId == "github.com" &&
-            "GitHub: "
-          }
+    return (  
+      <div>
+        <footer className="footer">
+          <div className="content-container">
+            <div className="footer__content">
+              <span className="footer__title">
+                { displayNameLET }
+                &nbsp;you're logged in via{' '}
+                
+                { providerIdLET &&
+                  console.log("teste: ",providerIdLET)
+                }
+                { providerIdLET == "google.com" &&
+                  "Google: "
+                }
+                
+                { providerIdLET == "github.com" &&
+                  "GitHub: "
+                }
 
-          { currentUser.providerId == "facebook.com" &&
-            "Facebook: "
-          }
- 
-          { currentUser.providerId == "twitter.com" &&
-            "Twitter: "
-          }
+                { providerIdLET == "facebook.com" &&
+                  "Facebook: "
+                }
+      
+                { providerIdLET == "twitter.com" &&
+                  "Twitter: "
+                }
 
-          { currentUser.providerId == "firebase" &&
-            "E-mail: "
-          }
+                { providerIdLET == "password" &&
+                  "E-mail: "
+                }
 
-          {/* {props.providerId == 'google.com' ? 'Google: ' : 'GitHub: '} */}
 
-          { currentUser.displayName == "null" &&
-            "teste display name"
-          }
+                &lt;{emailLET}&gt;
+              </span>
 
-          &lt;{currentUser.email}&gt;
-        </span>
-          {!currentUser.photoURL &&
-          <img className='header__user-avatar' src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg" />
-          }
-        { currentUser.photoURL &&
-          <img className='header__user-avatar' src={currentUser.photoURL} alt="Avatar" />
-        }
-        
+                {!photoURLLET &&
+                  <img className='header__user-avatar' src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg" />
+                }
+                { photoURLLET &&
+                  <img className='header__user-avatar' src={photoURLLET} alt="Avatar" />
+                }
+              
+            </div>
+          </div>
+      </footer>
       </div>
-    </div>
-  </footer>
-);
+    )
+  }
+}
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => ({
+  providerId: state.auth.providerId,
   currentUser: state.auth.currentUser,
+  displayName: state.auth.displayName,
+  email: state.auth.email,
+  photoURL: state.auth.photoURL,
 });
 
 //export default Footer;

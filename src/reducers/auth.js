@@ -3,7 +3,11 @@ export default (state = {}, action) => {
         case "LOGIN":
             return {
                 uid: action.uid,
+                providerId: action.providerId,
                 currentUser: action.currentUser,
+                displayName: action.displayName,
+                email: action.email,
+                photoURL: action.photoURL
             }
         case "LOGOUT":
             return {}
@@ -12,15 +16,6 @@ export default (state = {}, action) => {
                 displayName: action.displayName
             }
         default:
-        // case "TESTE":
-        //     return {
-        //         uid: action.uid,
-        //         providerId: action.providerId,
-        //         displayName: action.displayName,
-        //         email: action.email,
-        //         photoURL: action.photoURL,
-        //     }
-
             return state
     }
 }

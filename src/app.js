@@ -52,6 +52,7 @@ ReactDOM.render(<LoadingPage />, document.getElementById("app"))
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         console.log('User logged in with firebase UID: ',user.uid);
+        console.log('SIGN IN PROVIDER ID: ',user.providerId);
         const { currentUser } = firebase.auth()
         //var { user } = firebase.auth().currentUser;
         currentUser.providerData.forEach((profile) => {
@@ -61,7 +62,7 @@ firebase.auth().onAuthStateChanged((user) => {
             console.log(`Email: ${profile.email}`)
             console.log(`Photo URL: ${profile.photoURL}`)
 
-            store.dispatch(login(user.uid, currentUser,  user.displayName))
+            store.dispatch(login(user.uid, profile.providerId, currentUser,  user.displayName, user.email, user.photoURL))
         })
         // store.dispatch(login(user.uid, currentUser, profile.photoURL))
         store.dispatch(startSetExpenses()).then(() => {

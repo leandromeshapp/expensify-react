@@ -37,7 +37,7 @@ const AppRouter = () => (
             <Route exact path="/privacy" component={Privacy} />
 
             <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
-            <Route path="/profile" component={Profile} />
+            <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute path="/create" component={AddExpensePage} />
             <PrivateRoute path="/edit/:id" component={EditExpensePage} />
 
