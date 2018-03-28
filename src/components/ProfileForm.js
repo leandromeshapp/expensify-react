@@ -88,6 +88,8 @@ export default class ExpenseForm extends React.Component {
                     onChange={this.onPhotoURLChange}
                 />
 
+                <img className='header__user-avatar' src={this.state.photoURL} />
+                
                 <div>
                     <button className="button"> Save Profile </button>
                 </div>
