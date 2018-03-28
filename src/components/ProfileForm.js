@@ -77,6 +77,7 @@ export default class ExpenseForm extends React.Component {
                     placeholder = "Email"
                     value={this.state.email}
                     onChange={this.onEmailChange}
+                    disabled
                 />
 
                 <input 
