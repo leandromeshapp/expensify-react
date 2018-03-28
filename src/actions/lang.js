@@ -1,18 +1,18 @@
-import en from '../locale/en';
-import pt from '../locale/pt';
+import en from '../locale/en'
+import pt from '../locale/pt'
 
 export const setLanguage = (locale = 'en') => {
     return (dispatch, getState) => {
-        let dictionary = {};
+        let dictionary = {}
         if(locale == 'pt')
-            dictionary = pt;
+            dictionary = pt
         else
-            dictionary = en;
+            dictionary = en
 
     return dispatch({
         type: 'SET_LANGUAGE',
         locale,
         dictionary
-    });
-  };
-};
+    })
+  }
+}

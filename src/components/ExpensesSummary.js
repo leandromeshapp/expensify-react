@@ -10,9 +10,9 @@ import selectExpensesTotal from "../selectors/expenses-total"
 import { Link } from "react-router-dom"
 import { showAll } from "../actions/filters"
 
+import replaceAll from '../utils/replaceAll';
 
-
-export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpenseCount, visibleExpensesTotal }) => {
+export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpenseCount, visibleExpensesTotal, dictionary }) => {
     const expenseCount = expenses.length
     const filteredExpensesCount = expenseCount - visibleExpenseCount
     const visibleExpenseWord = visibleExpenseCount === 1 ? 'expense' : 'expenses'
@@ -41,21 +41,33 @@ export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpen
             }
 
             { visibleExpenseCount >= 1 && 
-                <h1 className="page-header__title"> Viewing
+                <h1 className="page-header__title"
+                >
+                {dictionary.summaryMessageTitle}
+                    {/* dangerouslySetInnerHTML={{
+                        __html: replaceAll(dictionary.summaryMessageTitle, {
+                            "{p1}": `<span>${expenseCount}</span>`,
+                            "{p2}": expenseCount != 1 ? 's' : '',
+                            "{p3}": `<span>${numeral(expensesTotal / 100).format('$0,0.00')}</span>`
+                        })
+                    }} */}
+
+                {/* Viewing
                 <span> { visibleExpenseCount } </span> 
                 { visibleExpenseWord } totalling 
-                <span> { formattedVisibleExpensesTotal } </span>
+                <span> { formattedVisibleExpensesTotal } </span> */}
                 </h1>
             }
                 
             <div className="page-header__action">
-                <Link className="button button" to="/create"> Add Expense </Link>
+                <Link className="button button" to="/create"> {dictionary.pageAddExpense}</Link>
             </div>
             <br/>
 
             { expenseCount !== visibleExpenseCount &&
                 <div className="header-filter-message">
-                    <span>
+                    {dictionary.summaryMessageSubitle}
+                    {/* <span>
                     <span>
                         {filteredExpensesCount}
                     </span> 
@@ -67,7 +79,7 @@ export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpen
                             formattedFilteredExpensesTotal
                         }
                     </span> total)
-                    </span>
+                    </span> */}
                 </div>}
             </div>
         </div>
@@ -77,15 +89,15 @@ export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpen
 
 const mapStateToProps = (state) => {
     const visibleExpenses = selectExpenses(state.expenses, state.filters)
-
     return {
         expenses: state.expenses,
         expensesTotal: selectExpensesTotal(state.expenses),
         filters: state.filters,
         visibleExpenseCount: visibleExpenses.length,
         visibleExpensesTotal: selectExpensesTotal(visibleExpenses),
-    
+
+        dictionary: state.lang.dictionary
     }
 }
 
-export default connect(mapStateToProps, { showAll })(ExpensesSummary)
+export default connect(mapStateToProps, {showAll})(ExpensesSummary)

@@ -5,8 +5,10 @@ import { connect } from "react-redux"
 import { startAddProfileInfo } from "../actions/user"
 import { startLogout } from "../actions/auth"
 
+import { setLanguage } from '../actions/lang'
 
-export const Header = ({ id, startLogout, currentUser }) => (
+
+export const Header = ({ id, startLogout, currentUser, setLanguage, dictionary, locale }) => (
     <header className="header">
         <div className="content-container">
             <div className="header__content">
@@ -15,6 +17,15 @@ export const Header = ({ id, startLogout, currentUser }) => (
                 </Link>
 
                 <div className='header__user'>
+                    <div className="header__language">
+                        <button className="button button-lang" onClick={() => {
+                        if(locale == 'en')
+                            setLanguage('pt')
+                        else
+                            setLanguage('en');
+                        }}>{locale == 'pt' ? 'PT' : 'EN'}</button>
+                    </div>
+
                     <span className='header__user-name'>
                     { currentUser.displayName || currentUser.email }
                     </span>
@@ -32,7 +43,7 @@ export const Header = ({ id, startLogout, currentUser }) => (
                     </div>
                     </Link>
                     
-                    <button className='button button--link' onClick={ startLogout }>Logout</button>
+                    <button className='button button--link' onClick={ startLogout }> {dictionary.logoutButton} </button>
                 </div>
 
             </div>
@@ -44,15 +55,14 @@ export const Header = ({ id, startLogout, currentUser }) => (
 
 const mapStateToProps = (state) => ({
     currentUser: state.auth.currentUser,
-
-    //user: state.expenses.find((expense) => expense.id === props.match.params.id)
+    locale: state.lang.locale,
+    dictionary: state.lang.dictionary
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
     startLogout: () => dispatch(startLogout()),
-
-    startAddProfileInfo: (info) => dispatch(startAddProfileInfo(info))
+    setLanguage: (language) => dispatch(setLanguage(language)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

@@ -16,16 +16,24 @@ export default {
         en: 'Viewing {p1} expense{p2} totalling {p3}'
     },
     summaryMessageSubitle: {
-        pt: 'Não mostrando {p1} despesa{p2} porque se aplicou um filtro',
-        en: 'Not showing {p1} expense{p2} because of filter'
+        pt: '{p1} despesa{p2} não estão a ser mostradas porque está um filtro aplicado TOTAL THINK',
+        en: '{p1} expense{p2} are not being filtered TOTAL'
     },
     addExpenseButton: {
         pt: 'Adicionar Despesa',
         en: 'Add Expense'
     },
     textFilter: {
-        pt: 'Procurar',
-        en: 'Search'
+        pt: 'Procurar despesas',
+        en: 'Search expenses'
+    },
+    sortByMin: {
+        pt: 'Mín',
+        en: 'Min'
+    },
+    sortByMax: {
+        pt: 'Máx',
+        en: 'Max'
     },
     sortByDate: {
         pt: 'Data',
@@ -36,12 +44,16 @@ export default {
         en: 'Amount'
     },
     startDatePicker: {
-        pt: 'Início',
+        pt: 'Início da Data',
         en: 'Start Date'
     },
     endDatePicker: {
-        pt: 'Fim',
+        pt: 'Fim da Data',
         en: 'End Date'
+    },
+    clearAllFilters: {
+        pt: "Limpar todos os filtros",
+        en: "Clear All Filters"
     },
     tableExpense: {
         pt: 'Despesa',
@@ -88,11 +100,7 @@ export default {
         en: 'Add'
     },
     footerMessage: {
-        pt: 'Ideia original de {p1} em {p2}. Novas características adicionadas por {p3}.',
-        en: 'Core app created by {p1} in its {p2}. New features added by {p3}.'
-    },
-    footerMessageCourse: {
-        pt: 'Curso',
-        en: 'course'
+        pt: '{p1} you\'re logged in via {p2}: <{p3}>',
+        en: '{p1} iniciaste sessão via {p2}: <{p3}>'
     }
   }

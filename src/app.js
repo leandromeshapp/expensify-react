@@ -15,7 +15,7 @@ import configureStore from "./store/configureStore"
 //Actions
 import { startSetExpenses } from "./actions/expenses"
 import { login, logout } from "./actions/auth"
-
+import { setLanguage } from './actions/lang';
 
 //Selectors
 import getVisibleExpenses from "./selectors/expenses"
@@ -48,6 +48,17 @@ const renderApp = () => {
 }
 
 ReactDOM.render(<LoadingPage />, document.getElementById("app"))
+
+
+//Sets Default Language
+const defaultLanguage = navigator.language || navigator.userLanguage || 'en-US';
+
+if(defaultLanguage == 'en'){
+  store.dispatch(setLanguage(defaultLanguage));
+}else{
+  store.dispatch(setLanguage('en'));
+}
+
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
