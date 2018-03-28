@@ -4,39 +4,57 @@ export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            displayName: props.info ? props.info.displayName : "",
-            email: props.info ? props.info.email : "",
-            photoURL: props.info ? props.info.photoURL : "",
+            displayName: "",
+            email: "",
+            photoURL: "",
             error: ""
         }
     }
     
 
-    ondisplayNameChange = (e) => {
+    componentWillMount() {
+        this.setState({
+            ...this.state,
+            displayName: this.props.displayName,
+            email: this.props.email,
+            photoURL: this.props.photoURL
+        })
+    }
+
+
+    onSubmit = (e) => {
+        e.preventDefault();
+
+        if (!this.state.displayName || !this.state.email) {
+            this.setState(() => ({ error: "Please provide Display Name and E-mail." }))
+        } else {
+            this.setState(() => ({ error: "" }))
+            this.props.onSubmit({
+                displayName: this.state.displayName,
+                email: this.state.email,
+                photoURL: this.state.photoURL
+            })
+        }
+    }
+
+
+    onDisplayNameChange = (e) => {
         const displayName = e.target.value
-        this.setState(() => ({ displayName}))
+        this.setState(() => ({ displayName }))
+        console.log(displayName)
     }
 
     onEmailChange = (e) => {
         const email = e.target.value
         this.setState(() => ({ email }))
+        console.log(email)
     }
 
 
     onPhotoURLChange = (e) => {
         const photoURL = e.target.value
         this.setState(() => ({ photoURL }))
-    }
-
-
-    onSubmit = (e) => {
-        this.setState(() => ({ error: "" }))
-
-        this.setState({
-            displayName: this.state.displayName,
-            email: this.state.email,
-            photoURL: this.state.photoURL,
-        })
+        console.log(photoURL)
     }
 
 
@@ -50,7 +68,7 @@ export default class ExpenseForm extends React.Component {
                     placeholder = "Display Name"
                     autoFocus
                     value={this.state.displayName}
-                    onChange={this.ondisplayNameChange}
+                    onChange={this.onDisplayNameChange}
                 />
 
                 <input 

@@ -25,17 +25,28 @@ export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpen
     return (
         <div className="page-header">
             <div className="content-container">
-            {expenseCount < 1 && <h1 className="page-header__title">No expenses found in database. Go out and spend some money!</h1>}
-            {existingExpensesButFiltered() && <h1 className="page-header__title">No expenses match the current filter criteria</h1>}
-            {visibleExpenseCount >= 1 && <h1 className="page-header__title">Viewing <span>{visibleExpenseCount}</span> {visibleExpenseWord} totalling <span>{formattedVisibleExpensesTotal}</span></h1>}
+            { expenseCount < 1 && 
+                <h1 className="page-header__title"> No expenses found in database. Go out and spend some money! </h1>
+            }
+
+            { existingExpensesButFiltered() && 
+                <h1 className="page-header__title"> No expenses match the current filter criteria </h1>
+            }
+
+            { visibleExpenseCount >= 1 && 
+                <h1 className="page-header__title"> Viewing
+                <span> { visibleExpenseCount } </span> 
+                { visibleExpenseWord } totalling 
+                <span> { formattedVisibleExpensesTotal } </span>
+                </h1>
+            }
                 
             <div className="page-header__action">
                 <Link className="button button" to="/create"> Add Expense </Link>
             </div>
             <br/>
 
-            {
-                expenseCount !== visibleExpenseCount &&
+            { expenseCount !== visibleExpenseCount &&
                 <div className="header-filter-message">
                     <span>
                     <span>
@@ -50,17 +61,6 @@ export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpen
                         }
                     </span> total)
                     </span>
-
-                    {/* <button
-                        onClick={() => {
-                            props.showAll();
-                        }}
-                        className="button button--showall"
-                    >
-                    View All
-                    </button> */}
-
-
                 </div>}
             </div>
         </div>

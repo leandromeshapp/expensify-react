@@ -39,36 +39,40 @@ export const startAddProfileInfo = (infoData = {}) => {
 
 
 // EDIT PROFILE
-export const editProfileInfo = (id, updates) => ({
+export const editProfileInfo = (displayName, email, photoURL) => ({
     type: "EDIT_PROFILE_INFO",
-    id,
-    updates
+    displayName,
+    email,
+    photoURL
 })
 
 
-// START EDIT PROFILE
+// // START EDIT PROFILE
 // export const startEditProfile = (id, updates) => {
-    // return (dispatch, getState) => {
-    //     const { uid } = getState().auth
-    //     return database.ref(`users/${uid}/info`)
-    //     .update(updates)
-    //     .then(() => {
-    //         dispatch(editProfileInfo(id, updates));
-    //     });
-    // };
+//     return (dispatch, getState) => {
+//         const { uid } = getState().auth
+//         return database.ref(`users/${uid}/info`)
+//         .update(updates)
+//         .then(() => {
+//             dispatch(editProfileInfo(id, updates));
+//         });
+//     };
 
 
-export const startEditProfile = ( id, updates, displayName, email, photoURL) => {
-    return () => {
+export const startEditProfile = (displayName, email, photoURL) => {
+    return (dispatch) => {
         firebase.auth().onAuthStateChanged(function(user) {
             if(user) {
                 console.log("signed in. updating...")
                 user.updateProfile({
-                    displayName,
-                    email,
-                    photoURL
+                    displayName: displayName.displayName,
+                    email: displayName.email,
+                    photoURL: displayName.photoURL
                 }).then(function() {
-                        console.log("UPDATED! See: ")
+                        console.log("UPDATED! See Display Name: ", displayName.displayName)
+                        console.log("UPDATED! See Email: ", displayName.email)
+                        console.log("UPDATED! See Photo URL: ", displayName.photoURL)
+                        dispatch(editProfileInfo(displayName, email, photoURL));
                 }).catch(function(error) {
                         console.log("error: ", error)
                 });
@@ -79,6 +83,16 @@ export const startEditProfile = ( id, updates, displayName, email, photoURL) => 
     }
 
 
+    // export const startEditExpense = (id, updates) => {
+    //     return (dispatch, getState) => {
+    //         const { uid } = getState().auth
+    //         return database.ref(`users/${uid}/expenses/${id}`)
+    //         .update(updates)
+    //         .then(() => {
+    //             dispatch(editExpense(id, updates));
+    //         });
+    //     };
+    //   };
 };
 
 
