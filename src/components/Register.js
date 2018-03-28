@@ -1,13 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { createLoginEmail, createDisplayName } from '../actions/auth';
-import { startAddProfileInfo} from "../actions/user"
-import validator from 'validator';
-import { Button } from 'react-bootstrap';
+import React from 'react'
+import { connect } from 'react-redux'
+import { createLoginEmail } from '../actions/auth'
+import { createDisplayName} from "../actions/user"
+import validator from 'validator'
+import { Button } from 'react-bootstrap'
 
 export class Register extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
         displayName: '',
         email: '',
@@ -16,7 +16,7 @@ export class Register extends React.Component {
         emailError: '',
         passwordError: '',
         generalError: '',
-    };
+    }
   }
 
   backHome = () => {
@@ -25,36 +25,30 @@ export class Register extends React.Component {
 
   ondisplayNameChange = (e) => {
     const displayName = e.target.value;
-    this.setState(() => ({ displayName }));
+    this.setState(() => ({ displayName }))
   }
 
   onEmailChange = (e) => {
     const email = e.target.value;
-    this.setState(() => ({ email }));
+    this.setState(() => ({ email }))
   }
 
   onPasswordChange = (e) => {
     const password = e.target.value;
-    this.setState(() => ({ password }));
+    this.setState(() => ({ password }))
   }
 
   onRepeatPasswordChange = (e) => {
     const repeatPassword = e.target.value;
-    this.setState(() => ({ repeatPassword }));
+    this.setState(() => ({ repeatPassword }))
   }
 
   onCreateLoginEmail = (e) => {
-    e.preventDefault();
-
-    // this.props.startAddProfileInfo(info)
+    e.preventDefault()
 
     this.props.createLoginEmailProp(this.state.email, this.state.password)
-
     this.props.createDisplayNameProp(this.state.displayName)
 
-    // setTimeout(function(){ 
-    //  this.props.history.push("/")
-    // }, 2000);
   }
 
   render() {
@@ -67,8 +61,8 @@ export class Register extends React.Component {
                 type="text"
                 placeholder="Nome"
                 autoFocus
-                value={this.state.displayName}
-                onChange={this.ondisplayNameChange}
+                value={ this.state.displayName }
+                onChange={ this.ondisplayNameChange }
             />
             <br/>
             <div className="testeSs">
@@ -77,8 +71,8 @@ export class Register extends React.Component {
                 className={this.state.emailError || this.state.generalError ? "form-control login-spacing-error form-box-error " : "form-control login-spacing"}
                 type="text"
                 placeholder="Email"
-                value={this.state.email}
-                onChange={this.onEmailChange}
+                value={ this.state.email }
+                onChange={ this.onEmailChange }
             />
             </div>
             {this.state.emailError && <span className="form__error">{this.state.emailError}</span>}
@@ -88,8 +82,8 @@ export class Register extends React.Component {
                 className={this.state.passwordError || this.state.generalError ? "form-control login-spacing-error form-box-error " : "form-control login-spacing"}
                 type="password"
                 placeholder="Password"
-                value={this.state.password}
-                onChange={this.onPasswordChange}
+                value={ this.state.password }
+                onChange={ this.onPasswordChange }
             />
             {this.state.passwordError && <span className="form__error">{this.state.passwordError}</span>}
             <br/>
@@ -111,15 +105,11 @@ export class Register extends React.Component {
     );
   }
 }
-// );
 
 
 const mapDispatchToProps = (dispatch) => ({
     createDisplayNameProp: (displayName) => dispatch(createDisplayName( displayName )),
     createLoginEmailProp: (email, password) => dispatch(createLoginEmail( email, password )),
-
-    // startAddProfileInfo: (info) => dispatch(startAddProfileInfo(info))
 });
 
-export default connect(undefined, mapDispatchToProps)(Register);
-//export default Register;
+export default connect(undefined, mapDispatchToProps)(Register)
