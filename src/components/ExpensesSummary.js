@@ -1,25 +1,32 @@
 import React from "react"
 import { connect } from "react-redux"
+
 import numeral from "numeral"
+import locale from 'numeral/locales';
+
 import selectExpenses from "../selectors/expenses"
 import selectExpensesTotal from "../selectors/expenses-total"
+
 import { Link } from "react-router-dom"
-import { showAll } from "../actions/filters";
+import { showAll } from "../actions/filters"
 
 
 
 export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpenseCount, visibleExpensesTotal }) => {
-    const expenseCount = expenses.length;
-    const filteredExpensesCount = expenseCount - visibleExpenseCount;
-    const visibleExpenseWord = visibleExpenseCount === 1 ? 'expense' : 'expenses';
-    const formattedVisibleExpensesTotal = numeral(visibleExpensesTotal / 100).format('$0,0.00');
-    const formattedFilteredExpensesTotal = numeral((expensesTotal - visibleExpensesTotal) / 100).format('$0,0.00');
+    const expenseCount = expenses.length
+    const filteredExpensesCount = expenseCount - visibleExpenseCount
+    const visibleExpenseWord = visibleExpenseCount === 1 ? 'expense' : 'expenses'
+    //const formattedVisibleExpensesTotal = numeral(visibleExpensesTotal / 100).format('$0,0.00')
+    numeral.locale('pt-pt');
+    const formattedVisibleExpensesTotal = numeral(visibleExpensesTotal / 100).format('0,0.00 $')
+    // const formattedFilteredExpensesTotal = numeral((expensesTotal - visibleExpensesTotal) / 100).format('$0,0.00')
+    const formattedFilteredExpensesTotal = numeral((expensesTotal - visibleExpensesTotal) / 100).format('0,0.00 $')
     
     const existingExpensesButFiltered = () => {
         if (expenseCount >= 1 && visibleExpenseCount < 1) {
-          return true;
+          return true
         }
-        return false;
+        return false
     };
 
     return (
