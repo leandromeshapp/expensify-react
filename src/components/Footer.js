@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import replaceAll from '../utils/replaceAll';
 
 //export const Footer = ({ currentUser }) => (
 export class Footer extends React.Component {
@@ -28,8 +29,7 @@ export class Footer extends React.Component {
 }
 
   render() {
-
-    const {dictionary} = this.props;
+    const {dictionary} = this.props
     return (  
       <div>
         <footer className="footer">
@@ -47,6 +47,16 @@ export class Footer extends React.Component {
                     // })
                 // }}> */}
 
+
+                <h4 className="footer__message"
+                  dangerouslySetInnerHTML={{
+                  __html: replaceAll(dictionary.footerMessage, {
+                  "{p1}": this.state.displayName,
+                  "{p2}": this.state.providerId
+                  })
+                  }}>
+              </h4>
+              {this.state.email}
                 {this.state.displayName}
                 &nbsp;you're logged in via{' '}
                 

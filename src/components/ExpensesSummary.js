@@ -33,29 +33,23 @@ export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpen
         <div className="page-header">
             <div className="content-container">
             { expenseCount < 1 && 
-                <h1 className="page-header__title"> No expenses found in database. Go out and spend some money! </h1>
+                <h1 className="page-header__title"> {dictionary.summaryMessageNoExpenses} </h1>
             }
 
             { existingExpensesButFiltered() && 
-                <h1 className="page-header__title"> No expenses match the current filter criteria </h1>
+                <h1 className="page-header__title"> {dictionary.summaryMessageNoMatch} </h1>
             }
 
             { visibleExpenseCount >= 1 && 
                 <h1 className="page-header__title"
-                >
-                {dictionary.summaryMessageTitle}
-                    {/* dangerouslySetInnerHTML={{
+                    dangerouslySetInnerHTML={{
                         __html: replaceAll(dictionary.summaryMessageTitle, {
                             "{p1}": `<span>${expenseCount}</span>`,
                             "{p2}": expenseCount != 1 ? 's' : '',
                             "{p3}": `<span>${numeral(expensesTotal / 100).format('$0,0.00')}</span>`
                         })
-                    }} */}
-
-                {/* Viewing
-                <span> { visibleExpenseCount } </span> 
-                { visibleExpenseWord } totalling 
-                <span> { formattedVisibleExpensesTotal } </span> */}
+                    }}
+                >
                 </h1>
             }
                 
@@ -65,21 +59,19 @@ export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpen
             <br/>
 
             { expenseCount !== visibleExpenseCount &&
-                <div className="header-filter-message">
-                    {dictionary.summaryMessageSubitle}
-                    {/* <span>
-                    <span>
-                        {filteredExpensesCount}
-                    </span> 
-                    {
-                        filteredExpensesCount === 1 ? ' expense is not' : ' expenses are not '
-                    } being filtered (
-                    <span>
-                        {
-                            formattedFilteredExpensesTotal
-                        }
-                    </span> total)
-                    </span> */}
+                <div className="header-filter-message"
+                    dangerouslySetInnerHTML={{
+                        __html: replaceAll(dictionary.summaryMessageSubitle, {
+                            "{p1}": `<span>${filteredExpensesCount}</span>`,
+             
+
+                            "{p2}": filteredExpensesCount === 1 ? ' expense is not ' : ' expenses are not',
+                                    
+
+                            "{p3}": `<span>${formattedFilteredExpensesTotal}</span>`
+                        })
+                    }} 
+                >
                 </div>}
             </div>
         </div>
@@ -96,6 +88,7 @@ const mapStateToProps = (state) => {
         visibleExpenseCount: visibleExpenses.length,
         visibleExpensesTotal: selectExpensesTotal(visibleExpenses),
 
+        locale: state.lang.locale,
         dictionary: state.lang.dictionary
     }
 }

@@ -2,16 +2,9 @@ import React from "react"
 import moment from "moment"
 import { SingleDatePicker } from "react-dates"
 
+import { connect } from 'react-redux';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextField from 'material-ui/TextField';
-
-import {grey50, red50, black, white} from 'material-ui/styles/colors';
-import {fullBlack} from 'material-ui/styles/colors';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-
-export default class ExpenseForm extends React.Component {
+export class ExpenseForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -72,13 +65,14 @@ export default class ExpenseForm extends React.Component {
 
 
     render() {
+        const {dictionary} = this.props;
         return (
             <form className="form" onSubmit={this.onSubmit}>
             {this.state.error && <p className="form__error"> {this.state.error} </p>}
                 <input
                     className="text-input"
                     type = "text"
-                    placeholder = "Description"
+                    placeholder = {dictionary.descriptionPlaceholder}
                     autoFocus
                     value={this.state.description}
                     onChange={this.onDescriptionChange}
@@ -87,7 +81,7 @@ export default class ExpenseForm extends React.Component {
                 <input 
                     className="text-input"
                     type = "text"
-                    placeholder = "Amount"
+                    placeholder = {dictionary.amountPlaceholder}
                     value={this.state.amount}
                     onChange={this.onAmountChange}
                 />
@@ -103,7 +97,7 @@ export default class ExpenseForm extends React.Component {
 
                 <textarea
                     className="text-area"
-                    placeholder = "Add a note for your expense (optional)" 
+                    placeholder = {dictionary.notePlaceholder}
                     value={this.state.note}
                     onChange={this.onNoteChange}
                 >
@@ -115,3 +109,12 @@ export default class ExpenseForm extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state, props) => ({
+    locale: state.lang.locale,
+    dictionary: state.lang.dictionary
+  });
+  
+  
+  export default connect(mapStateToProps)(ExpenseForm);
+  

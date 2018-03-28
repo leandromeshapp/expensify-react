@@ -5,7 +5,10 @@ export default {
     logoutButton: 'Log out',
 
     summaryMessageTitle: 'Viewing {p1} expense{p2} totalling {p3}',
-    summaryMessageSubitle: '{p1} expense{p2} are not being filtered TOTAL',
+    summaryMessageSubitle: '{p1} {p2} being filtered {p3}',
+
+    summaryMessageNoExpenses: 'No expenses found in database. Go out and spend some money!',
+    summaryMessageNoMatch: 'No expenses match the current filter criteria',
 
     addExpenseButton: 'Add Expense',
 
@@ -32,7 +35,7 @@ export default {
 
     descriptionPlaceholder: 'Description',
     amountPlaceholder: 'Amount',
-    notePlaceholder: 'Add an extense description (option)',
+    notePlaceholder: 'Add a note for your expense (option)',
 
     removeExpenseButton: 'Remove Expense',
     saveExpenseButton: 'Save',

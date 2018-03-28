@@ -4,7 +4,10 @@ export default {
     logoutButton: 'Encerrar Sessão',
 
     summaryMessageTitle: 'A ver {p1} despesa{p2}, num total de {p3}',
-    summaryMessageSubitle: '{p1} despesa{p2} não estão a ser mostradas porque está um filtro aplicado TOTAL THINK',
+    summaryMessageSubitle: '{p1} {p2} não est + á/ão a ser filtrada + s ( {p3} Total )',
+
+    summaryMessageNoExpenses: 'Não há despesas associadas a esta conta. Vai gastar dinheiro!',
+    summaryMessageNoMatch: 'Não há despesas com o critério de filtro atual.',
 
     addExpenseButton: 'Adicionar Gasto',
 
@@ -30,7 +33,7 @@ export default {
 
     descriptionPlaceholder: 'Descrição',
     amountPlaceholder: 'Custo',
-    notePlaceholder: 'Adiciona uma descrição (opcional)',
+    notePlaceholder: 'Adiciona uma descrição à tua despesa (opcional)',
 
     removeExpenseButton: 'Apagar Despesa',
     saveExpenseButton: 'Guardar',
