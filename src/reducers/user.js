@@ -21,6 +21,10 @@ export default (state = profileInfoReducerDefaultState, action) => {
             })
         case "SET_PROFILE_INFO":
             return action.info
+        case "CHANGE":
+            return {
+                displayName: action.displayName
+            }
         default:
             return state
     }
