@@ -28,10 +28,6 @@ export class EditProfile extends React.Component {
                     photoURL = { this.props.photoURL }      
                     onSubmit = {this.onSubmit}
                 />
-
-                <div>
-                    <button className="button"> Save Profile </button>
-                </div>
             </div>
         </div>
         )
