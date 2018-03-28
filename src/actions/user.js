@@ -47,18 +47,6 @@ export const editProfileInfo = (displayName, email, photoURL) => ({
 })
 
 
-// // START EDIT PROFILE
-// export const startEditProfile = (id, updates) => {
-//     return (dispatch, getState) => {
-//         const { uid } = getState().auth
-//         return database.ref(`users/${uid}/info`)
-//         .update(updates)
-//         .then(() => {
-//             dispatch(editProfileInfo(id, updates));
-//         });
-//     };
-
-
 export const startEditProfile = (displayName, email, photoURL) => {
     return (dispatch) => {
         firebase.auth().onAuthStateChanged(function(user) {
@@ -81,43 +69,26 @@ export const startEditProfile = (displayName, email, photoURL) => {
             }
         })
     }
-
-
-    // export const startEditExpense = (id, updates) => {
-    //     return (dispatch, getState) => {
-    //         const { uid } = getState().auth
-    //         return database.ref(`users/${uid}/expenses/${id}`)
-    //         .update(updates)
-    //         .then(() => {
-    //             dispatch(editExpense(id, updates));
-    //         });
-    //     };
-    //   };
 };
 
 
 
-// SET_PROFILE
-export const setProfileInfo = (info) => ({
-    type: "SET_PROFILE_INFO",
-    info
-})
-
-
-export const startSetProfile = () => {
-    return (dispatch, getState) => {
-        const { uid } = getState().auth
-        return database.ref(`users/${uid}/info`).once("value")
-        .then((snapshot) => {
-            const info = []
-
-            snapshot.forEach((childSnapshot) => {
-                info.push({
-                    id: childSnapshot.key,
-                    ...childSnapshot.val()
-                })
-            })
-            dispatch(setProfileInfo(info))
+export const createDisplayName = ( displayName ) => {
+    return () => {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if(user) {
+                console.log("Signed In. Updating Display Name and Default Photo URL: ", displayName)
+                user.updateProfile({
+                    displayName,
+                    photoURL: "https://i.imgur.com/rvMKzWG.png"
+                }).then(function() {
+                        console.log("Sucess Updating!")
+                }).catch(function(error) {
+                        console.log("Error updating: ", error)
+                });
+            } else {
+                console.log("Not Signed In Dude. Why do you even try?")
+            }
         })
     }
 }
