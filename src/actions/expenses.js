@@ -95,3 +95,25 @@ export const startSetExpenses = () => {
         })
     }
 }
+
+
+
+// SET_order_expenses
+export const setOrderExpenses = (expenses) => ({
+    type: "SET_ORDER_EXPENSES",
+    expenses
+})
+
+
+export const orderExpenses = (expenses) => {
+    return (dispatch, getState) => {
+        const { uid } = getState().auth
+        return database.ref(`users/${uid}/expenses`)
+        .orderByKey()
+        .on("child_added", callback)
+        .limitToFirst(5)
+        .then(() => {
+            dispatch(setOrderExpenses(expenses))
+        })
+    }
+}

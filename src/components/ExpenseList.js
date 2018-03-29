@@ -6,7 +6,11 @@ import { Pagination } from 'react-bootstrap';
 import ExpenseListItem from "./ExpenseListItem"
 import selectExpenses from "../selectors/expenses"
 
+import { orderExpenses  } from '../actions/expenses';
+
+
 import ReactPaginate from "react-paginate"
+
 
 export const ExpenseList = ({ expenses, dictionary }) => (
     <div className="content-container">
@@ -16,6 +20,8 @@ export const ExpenseList = ({ expenses, dictionary }) => (
             <div className="show-for-desktop"> {dictionary.tableAmount}</div>
         </div>
         <div className="list-body">
+
+        {/* //<button className="buttonRegister" onClick={ orderExpenses(expenses) }> Register </button> */}
             {
                 expenses.length === 0 ? (
                     <div className="list-item--message">
@@ -24,15 +30,12 @@ export const ExpenseList = ({ expenses, dictionary }) => (
                     
                 ) : (
                     expenses.map((expense, index) => {
-                        {/* if (index >= start_offset && start_count < per_page) {
-                            start_count++; */}
-                            return <ExpenseListItem key={expense.id} {...expense} />
-                        {/* } */}
+                        return <ExpenseListItem key={expense.id} {...expense} />
                     })
                 )
             }
 
-          <ReactPaginate
+          {/* <ReactPaginate
         previousLabel={<i className="glyphicon glyphicon-chevron-left" aria-hidden="true"></i>}
         nextLabel={<i className="glyphicon glyphicon-chevron-right" aria-hidden="true"></i>}
         breakLabel={'...'}
@@ -46,18 +49,19 @@ export const ExpenseList = ({ expenses, dictionary }) => (
         containerClassName={"pagination"}
         subContainerClassName={"pages pagination"}
         activeClassName={"active"}
-      />
+      /> */}
         </div>
     </div>
 )
+
 
 const mapStateToProps = (state) => {
     return {
         expenses: selectExpenses(state.expenses, state.filters),
 
+        orderExpenses: (expenses) => dispatch(orderExpenses( expenses )),
+
         dictionary: state.lang.dictionary
-
-
     }
 }
 
