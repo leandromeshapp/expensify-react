@@ -3,6 +3,7 @@ Expensify App with Firebase + Redux
 
 
 ## Things to do:
+### - INDEX PAGINATION VERY IMPORTANT. STABLE APP
 ### - Confirmation Modal before remove expense ✓
 ### - Show number of hidden expenses ✓
 ### - Login with Facebook, github ✓

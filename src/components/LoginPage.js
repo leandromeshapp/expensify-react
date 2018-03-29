@@ -99,14 +99,6 @@ export class LoginPage extends React.Component {
           </div>
         )}
 
-
-        {/* <div className="buttonLogin">
-          <button className='button button--with-icon' style={{"background":"#dd4b39"}} onClick={ this.props.startLoginGoogleProp }><i className="icon-prepend fa fa-google"/> Login with Google</button>
-          <button className='button button--with-icon' style={{"background":"#4267b2"}} onClick={ this.props.startLoginFacebookProp }><i className="icon-prepend fa fa-facebook-f"/> Login with Facebook</button>
-          <button className='button button--with-icon' style={{"background":"#24292e"}} onClick={ this.props.startLoginGithubProp }><i className="icon-prepend fa fa-github"/> Login with Github</button>
-          <button className='button button--with-icon' style={{"background":"#1dcaff"}} onClick={ this.props.startLoginTwitterProp }><i className="icon-prepend fa fa-twitter"/> Login with Twitter</button>
-        </div> */}
-
         <br/>
         <br/>
         <h1>E-mail Login </h1>
@@ -138,7 +130,6 @@ export class LoginPage extends React.Component {
           <option value="en">English</option>
           <option value="pt">Portuguese</option>
         </select>
-
       </div>
     </form>
   </div>
@@ -146,10 +137,6 @@ export class LoginPage extends React.Component {
     )
   }
 }
-// )
-
-// );
-
 
 const mapDispatchToProps = (dispatch) => ({
   startLoginGoogleProp: () => dispatch(startLoginGoogle()),
@@ -157,7 +144,6 @@ const mapDispatchToProps = (dispatch) => ({
   startLoginFacebookProp: () => dispatch(startLoginFacebook()),
   startLoginTwitterProp: () => dispatch(startLoginTwitter()),
   startLogin: (provider) => dispatch(startLogin(provider)),
-  //startLoginGoogleProp: () => dispatch(startLoginGoogle()),
   startLoginEmailProp: (email, password) => dispatch(startLoginEmail(email, password)),
 });
 
