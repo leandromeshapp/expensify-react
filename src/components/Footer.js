@@ -35,9 +35,13 @@ export class Footer extends React.Component {
         <footer className="footer">
           <div className="content-container">
             <div className="footer__content">
-              <span className="footer__title">
+              <span className="footer__title"
               
-                <h4 className="footer__message"
+             
+              
+              >
+              
+                <h4 className="footer__title"
                 dangerouslySetInnerHTML={{
                   __html: replaceAll(dictionary.footerMessage, {
                   "{p1}": this.state.displayName,
@@ -48,9 +52,12 @@ export class Footer extends React.Component {
                   this.state.providerId == "twitter.com" && "Twitter: ",
                   "{p3}": "&lt;" + this.state.email + "&gt;"
                   })
-                  }}>
-              </h4>
-              {this.state.email}
+                  }}
+                > 
+
+
+                </h4>
+              {/* {this.state.email}
                 {this.state.displayName}
                 &nbsp;you're logged in via{' '}
                 
@@ -78,7 +85,7 @@ export class Footer extends React.Component {
                 }
 
 
-                &lt;{this.state.email}&gt;
+                &lt;{this.state.email}&gt; */}
               </span>
 
                 {!this.state.photoURL &&

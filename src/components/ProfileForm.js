@@ -1,6 +1,7 @@
 import React from "react"
+import { connect } from "react-redux" 
 
-export default class ExpenseForm extends React.Component {
+export class ExpenseForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -11,7 +12,6 @@ export default class ExpenseForm extends React.Component {
         }
     }
     
-
     componentWillMount() {
         this.setState({
             ...this.state,
@@ -20,7 +20,6 @@ export default class ExpenseForm extends React.Component {
             photoURL: this.props.photoURL
         })
     }
-
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -37,7 +36,6 @@ export default class ExpenseForm extends React.Component {
         }
     }
 
-
     onDisplayNameChange = (e) => {
         const displayName = e.target.value
         this.setState(() => ({ displayName }))
@@ -50,22 +48,21 @@ export default class ExpenseForm extends React.Component {
         console.log(email)
     }
 
-
     onPhotoURLChange = (e) => {
         const photoURL = e.target.value
         this.setState(() => ({ photoURL }))
         console.log(photoURL)
     }
 
-
     render() {
+        const {locale, dictionary} = this.props
         return (
             <form className="form" onSubmit={this.onSubmit}>
             {this.state.error && <p className="form__error"> {this.state.error} </p>}
                 <input
                     className="text-input"
                     type = "text"
-                    placeholder = "Display Name"
+                    placeholder = {dictionary.displayNamePlaceHolder}
                     autoFocus
                     value={this.state.displayName}
                     onChange={this.onDisplayNameChange}
@@ -83,7 +80,7 @@ export default class ExpenseForm extends React.Component {
                 <input 
                     className="text-input"
                     type = "text"
-                    placeholder = "Photo URL"
+                    placeholder =  {dictionary.photoURLPlaceHolder}
                     value={this.state.photoURL}
                     onChange={this.onPhotoURLChange}
                 />
@@ -91,9 +88,16 @@ export default class ExpenseForm extends React.Component {
                 <img className='header__user-avatar' src={this.state.photoURL} />
                 
                 <div>
-                    <button className="button"> Save Profile </button>
+                    <button className="button"> {dictionary.saveProfileButton} </button>
                 </div>
             </form>
         )
     }
 }
+
+const mapStateToProps = (state, props) => ({
+    locale: state.lang.locale,
+    dictionary: state.lang.dictionary
+})
+
+export default connect(mapStateToProps)(ExpenseForm)

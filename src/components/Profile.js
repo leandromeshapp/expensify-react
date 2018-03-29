@@ -13,11 +13,12 @@ export class EditProfile extends React.Component {
     }
 
     render() {
+        const {locale, dictionary} = this.props
         return (  
             <div>
                 <div className="page-header">
                     <div className="content-container">
-                        <h1 className="page-header__title"> Edit Profile </h1>
+                        <h1 className="page-header__title"> {dictionary.pageEditProfile} </h1>
                     </div>
                 </div>
                 <div className="content-container">
@@ -38,7 +39,10 @@ export class EditProfile extends React.Component {
 const mapStateToProps = (state, props) => ({
     displayName: state.auth.displayName,
     email: state.auth.email,
-    photoURL: state.auth.photoURL
+    photoURL: state.auth.photoURL,
+
+    locale: state.lang.locale,
+    dictionary: state.lang.dictionary
 })
 
 const mapDispatchToProps = (dispatch, props) => ({

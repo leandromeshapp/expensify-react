@@ -55,9 +55,13 @@
   
 .header__title{
     color: white;
-    text-decoration: none;
+    text-decoration: none!important;
     h1{
       margin: 0;
+    }
+
+    &:hover {
+        color: #fff;
     }
 }
   

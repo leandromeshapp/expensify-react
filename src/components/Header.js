@@ -22,7 +22,7 @@ export const Header = ({ id, startLogout, currentUser, setLanguage, dictionary, 
                         if(locale == 'en')
                             setLanguage('pt')
                         else
-                            setLanguage('en');
+                            setLanguage('en')
                         }}>{locale == 'pt' ? 'PT' : 'EN'}</button>
                     </div>
 

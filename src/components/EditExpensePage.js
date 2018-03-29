@@ -33,11 +33,12 @@ export class EditExpensePage extends React.Component {
     }
 
     render() {
+        const {locale, dictionary} = this.props
         return (  
             <div>
                 <div className="page-header">
                     <div className="content-container">
-                        <h1 className="page-header__title"> Edit Expense </h1>
+                        <h1 className="page-header__title"> {dictionary.pageEditExpense} </h1>
                     </div>
                 </div>
                 <div className="content-container">
@@ -78,7 +79,10 @@ export class EditExpensePage extends React.Component {
 
 
 const mapStateToProps = (state, props) => ({
-    expense: state.expenses.find((expense) => expense.id === props.match.params.id)
+    expense: state.expenses.find((expense) => expense.id === props.match.params.id),
+
+    locale: state.lang.locale,
+    dictionary: state.lang.dictionary
 })
 
 
