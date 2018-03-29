@@ -94,3 +94,14 @@
     //align-content: center;
     justify-content: space-between;
   }
+
+
+.button-lang{
+    background: none;
+    font-size: $font-size-small;
+    font-weight: bold;
+    transition: color .3s ease;
+    &:hover{
+      color: $blue;
+    }
+}

@@ -26,13 +26,20 @@ export const Header = ({ id, startLogout, currentUser, setLanguage, dictionary, 
                         }}>{locale == 'pt' ? 'PT' : 'EN'}</button>
                     </div>
 
-                    <span className='header__user-name'>
-                    { currentUser.displayName || currentUser.email }
-                    </span>
 
+                    <div >
+                        <Link className="header__photo" to ={`/profile`} >
+                            <img className="header__user-avatar" src={`${currentUser.photoURL}`}></img>
+                        </Link>
+                    </div>          
+
+                    <span className='header__user__info'>
+                    <span className="header__user__displayname">{currentUser.displayName}</span>
+
+                    <button className='button button--link' onClick={ startLogout }> {dictionary.logoutButton} </button>
+                    </span>
                     
-                    <Link className="header__photo" to ={`/profile`} >
-                    <div className="footer__content">
+                    {/* <div className="footer__content">
                         {currentUser.photoURL &&
                             <img className='header__user-avatar' src={`${currentUser.photoURL}`} />
                         }
@@ -40,15 +47,10 @@ export const Header = ({ id, startLogout, currentUser, setLanguage, dictionary, 
                             <img className='header__user-avatar' src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg" />
                         }
                         
-                    </div>
-                    </Link>
-                    
-                    <button className='button button--link' onClick={ startLogout }> {dictionary.logoutButton} </button>
+                    </div> */}
                 </div>
-
             </div>
-            </div>
-        <br/>
+        </div>
     </header>
 )
 

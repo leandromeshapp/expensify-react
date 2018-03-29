@@ -1,40 +1,40 @@
-.header {
-    background: $darkblue;
-}
+// .header {
+//     background: $darkblue;
+// }
   
 
-.header__content {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding: $sSize 0;
-}
+// .header__content {
+//     align-items: center;
+//     display: flex;
+//     justify-content: space-between;
+//     padding: $sSize 0;
+// }
   
-.header__title {
-    color: white;
-    text-decoration: none!important;
+// .header__title {
+//     color: white;
+//     text-decoration: none!important;
   
-    h1 {
-      margin: 0;  
-    }
+//     h1 {
+//       margin: 0;  
+//     }
 
-    &:hover {
-        color: #fff;
-    }
-}
+//     &:hover {
+//         color: #fff;
+//     }
+// }
   
   
-.header__user {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+// .header__user {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+// }
   
-.header__user-name {
-   color: white;
-   font-size: $font-size-small;
-   margin-right: 1.8rem;
-}
+// .header__user-name {
+//    color: white;
+//    font-size: $font-size-small;
+//    margin-right: 1.8rem;
+// }
   
 .header__user-avatar {
     width: 40px;
@@ -42,28 +42,50 @@
     border-radius: 50%;
 }
 
+// .header__language{
+//     padding: 0 1.5rem;
+// }
+
+
+
+
+.header{
+    background: $darkblue;
+}
+  
+.header__title{
+    color: white;
+    text-decoration: none;
+    h1{
+      margin: 0;
+    }
+}
+  
+.header__content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $sSize 0;
+}
+  
 .header__language{
     padding: 0 1.5rem;
 }
-
-
   
+.header__user{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
   
-// .header__user{
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-between;
-//     align-items: center;
-// }
+.header__user__info{
+    display: flex;
+    flex-direction: column;
+}
   
-// .header__user__info{
-//     display: flex;
-//     flex-direction: column;
-// }
-  
-// .header__user__displayname{
-//     color: white;
-//     font-weight: bold;
-//     padding: 1rem 0 0 1rem;
-// }
-  
+.header__user__displayname{
+    color: white;
+    font-weight: bold;
+    padding: 1rem 0 0 1rem;
+}
