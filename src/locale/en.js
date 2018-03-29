@@ -41,5 +41,5 @@ export default {
     saveExpenseButton: 'Save',
     newExpenseButton: 'Add',
 
-    footerMessage: '{p1} you\'re logged in via {p2}: <{p3}>',
+    footerMessage: '{p1} you\'re logged in via {p2}: {p3}',
   }

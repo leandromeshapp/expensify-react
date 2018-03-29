@@ -4,7 +4,7 @@ export default {
     logoutButton: 'Encerrar Sessão',
 
     summaryMessageTitle: 'A ver {p1} despesa{p2}, num total de {p3}',
-    summaryMessageSubitle: '{p1} {p2} não est + á/ão a ser filtrada + s ( {p3} Total )',
+    summaryMessageSubitle: '{p1} {p2} ( {p3} Total )',
 
     summaryMessageNoExpenses: 'Não há despesas associadas a esta conta. Vai gastar dinheiro!',
     summaryMessageNoMatch: 'Não há despesas com o critério de filtro atual.',
@@ -39,5 +39,5 @@ export default {
     saveExpenseButton: 'Guardar',
     newExpenseButton: 'Adicionar',
 
-    footerMessage: '{p1} iniciaste sessão via {p2}: <{p3}>',
+    footerMessage: '{p1} iniciaste sessão via {p2}: {p3}',
 }  
