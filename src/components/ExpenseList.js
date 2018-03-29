@@ -1,11 +1,12 @@
 import React from "react"
 import { connect } from "react-redux"
-
+import { Pagination } from 'react-bootstrap';
 
 //Components
 import ExpenseListItem from "./ExpenseListItem"
 import selectExpenses from "../selectors/expenses"
 
+import ReactPaginate from "react-paginate"
 
 export const ExpenseList = ({ expenses, dictionary }) => (
     <div className="content-container">
@@ -22,11 +23,30 @@ export const ExpenseList = ({ expenses, dictionary }) => (
                     </div>
                     
                 ) : (
-                    expenses.map((expense) => {
-                        return <ExpenseListItem key={expense.id} {...expense} />
+                    expenses.map((expense, index) => {
+                        {/* if (index >= start_offset && start_count < per_page) {
+                            start_count++; */}
+                            return <ExpenseListItem key={expense.id} {...expense} />
+                        {/* } */}
                     })
                 )
             }
+
+          <ReactPaginate
+        previousLabel={<i className="glyphicon glyphicon-chevron-left" aria-hidden="true"></i>}
+        nextLabel={<i className="glyphicon glyphicon-chevron-right" aria-hidden="true"></i>}
+        breakLabel={'...'}
+        pageCount={expenses.last_page}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        initialPage={0}
+        forcePage={2 - 1}
+        disableInitialCallback={true}
+        //onPageChange={this.paginationPressed}
+        containerClassName={"pagination"}
+        subContainerClassName={"pages pagination"}
+        activeClassName={"active"}
+      />
         </div>
     </div>
 )
@@ -36,6 +56,8 @@ const mapStateToProps = (state) => {
         expenses: selectExpenses(state.expenses, state.filters),
 
         dictionary: state.lang.dictionary
+
+
     }
 }
 
