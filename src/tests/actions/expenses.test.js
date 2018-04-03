@@ -109,30 +109,30 @@ test("Should add expense action object with PROVIDED values", () => {
 ///////////////////////////////////////////////////
 
 test("Should add expense to database and store", (done) => {
-    const store = createMockStore(defaultAuthState);
+    const store = createMockStore(defaultAuthState)
     const expenseData = {
       description: 'DeathAdder Elite',
       amount: 60,
       note: 'This mouse is better than DA Chroma',
       createdAt: 1000
-    };
+    }
   
     store.dispatch(startAddExpense(expenseData)).then(() => {
-      const actions = store.getActions();
+      const actions = store.getActions()
       expect(actions[0]).toEqual({
         type: 'ADD_EXPENSE',
         expense: {
           id: expect.any(String),
           ...expenseData
         }
-      });
+      })
   
-      return database.ref(`users/${uid}/expenses/${actions[0].expense.id}`).once('value');
+      return database.ref(`users/${uid}/expenses/${actions[0].expense.id}`).once('value')
     }).then((snapshot) => {
-      expect(snapshot.val()).toEqual(expenseData);
-      done();
-    });
-  });
+      expect(snapshot.val()).toEqual(expenseData)
+      done()
+    })
+  })
 
 
 

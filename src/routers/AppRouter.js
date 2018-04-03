@@ -18,7 +18,7 @@ import Privacy from "../components/Privacy"
 
 import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
-//import RegisterPage from "../components/RegisterPage";
+//import RegisterPage from "../components/RegisterPage"
 // import LoginT from "../components/LoginT"
 
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import Modal from 'react-modal';
+import React from 'react'
+import Modal from 'react-modal'
 
 export const ModalDialog = props => (
     <Modal
@@ -10,4 +10,4 @@ export const ModalDialog = props => (
         shouldCloseOnOverlayClick={true}>
         {props.children}
     </Modal>
-);
+)

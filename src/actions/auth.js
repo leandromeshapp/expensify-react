@@ -101,7 +101,7 @@ export const createLoginEmail = (email, password) => {
 
 
 export const createDisplayName = ( displayName ) => {
-    //var user = firebase.auth().currentUser;
+    //var user = firebase.auth().currentUser
     return () => {
         firebase.auth().onAuthStateChanged(function(user) {
             if(user) {
@@ -113,7 +113,7 @@ export const createDisplayName = ( displayName ) => {
                         console.log("sucess")
                 }).catch(function(error) {
                         console.log("error: ", error)
-                });
+                })
             } else {
                 console.log("not signed in")
             }
@@ -127,7 +127,7 @@ export const createDisplayName = ( displayName ) => {
     //     console.log("sucess")
     //     }).catch(function(error) {
     //         console.log("error: ", error)
-    //     });
+    //     })
 
 
 export const startLoginEmail = (email, password) => {

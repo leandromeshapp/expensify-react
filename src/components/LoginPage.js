@@ -1,9 +1,19 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { startLogin, startLoginEmail, createLoginEmail, startLoginGoogle, startLoginGithub, startLoginFacebook, startLoginTwitter } from '../actions/auth';
+import React from 'react'
+import { connect } from 'react-redux'
+import { 
+  startLogin, 
+  startLoginEmail, 
+  createLoginEmail, 
+  startLoginGoogle, 
+  startLoginGithub, 
+  startLoginFacebook, 
+  startLoginTwitter 
+} from '../actions/auth'
+
 import { Redirect, App, Route, Switch} from "react-router-dom"
 import { Button } from 'react-bootstrap'
 import { Register } from './Register'
+
 // export const LoginPage = ({ startLogin }) => (
 import { setLanguage } from '../actions/lang'
 let visibility = false
@@ -11,14 +21,14 @@ let visibility = false
 //export const LoginPage = ({ startLoginGoogle, startGithubLogin }) => (
 export class LoginPage extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       email: '',
       password: '',
       emailError: '',
       passwordError: '',
       generalError: '',
-    };
+    }
   }
 
   toggleVisibility = () => {
@@ -31,7 +41,7 @@ export class LoginPage extends React.Component {
     const language = e.target.value
     console.log(language)
     this.props.setLanguage(language)
-  };
+  }
 
 
   onEmailChange = (e) => {
@@ -65,7 +75,7 @@ export class LoginPage extends React.Component {
         return this.setState(() => ({ generalError: 'Invalid login' }))
       }
       return undefined
-    });
+    })
   }
 
 
@@ -145,12 +155,12 @@ const mapDispatchToProps = (dispatch) => ({
   startLoginTwitterProp: () => dispatch(startLoginTwitter()),
   startLogin: (provider) => dispatch(startLogin(provider)),
   startLoginEmailProp: (email, password) => dispatch(startLoginEmail(email, password)),
-});
+})
 
 
 const mapStateToProps = (state) => ({
   locale: state.lang.locale,
   dictionary: state.lang.dictionary
-});
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

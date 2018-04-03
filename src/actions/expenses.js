@@ -65,10 +65,10 @@ export const startEditExpense = (id, updates) => {
         return database.ref(`users/${uid}/expenses/${id}`)
         .update(updates)
         .then(() => {
-            dispatch(editExpense(id, updates));
-        });
-    };
-  };
+            dispatch(editExpense(id, updates))
+        })
+    }
+}
 
 
 // SET_EXPENSES
@@ -82,7 +82,14 @@ export const startSetExpenses = () => {
     return (dispatch, getState) => {
         const { uid } = getState().auth
         return database.ref(`users/${uid}/expenses`)
-        .limitToFirst(5)
+        .orderByKey()
+        //.limitToFirst(5)
+        //.endAt("amount")
+        
+        // Order By will order by Date Creation (January)
+        // Limit To First 5 will only show first 5 of Order By
+        // End At will Order the 5 ASC OR DESC?
+
 
         .once('value', function(snapshot) {
             console.log('Snap: ', snapshot.val())

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const Privacy = () => (
     <div>
@@ -169,4 +169,4 @@ cookies to help us remember and process the items in your shopping cart. They ar
     </div>
 )
 
-export default Privacy;
+export default Privacy

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const Terms = () => (
     <div>
@@ -48,6 +48,6 @@ export const Terms = () => (
         <p>If you have any questions about these Terms, please contact us.</p>
     </div>
 
-);
+)
 
-export default Terms;
+export default Terms

@@ -22,7 +22,7 @@ export class ExpenseForm extends React.Component {
     }
 
     onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         if (!this.state.displayName || !this.state.email) {
             this.setState(() => ({ error: "Please provide Display Name and E-mail." }))

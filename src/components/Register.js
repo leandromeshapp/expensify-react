@@ -24,22 +24,22 @@ export class Register extends React.Component {
 }
 
   ondisplayNameChange = (e) => {
-    const displayName = e.target.value;
+    const displayName = e.target.value
     this.setState(() => ({ displayName }))
   }
 
   onEmailChange = (e) => {
-    const email = e.target.value;
+    const email = e.target.value
     this.setState(() => ({ email }))
   }
 
   onPasswordChange = (e) => {
-    const password = e.target.value;
+    const password = e.target.value
     this.setState(() => ({ password }))
   }
 
   onRepeatPasswordChange = (e) => {
-    const repeatPassword = e.target.value;
+    const repeatPassword = e.target.value
     this.setState(() => ({ repeatPassword }))
   }
 
@@ -102,7 +102,7 @@ export class Register extends React.Component {
             <Button className="buttonRegister" bsStyle="danger" onClick={this.backHome}> Home </Button>
         </div>
     </div>
-    );
+    )
   }
 }
 
@@ -110,6 +110,6 @@ export class Register extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
     createDisplayNameProp: (displayName) => dispatch(createDisplayName( displayName )),
     createLoginEmailProp: (email, password) => dispatch(createLoginEmail( email, password )),
-});
+})
 
 export default connect(undefined, mapDispatchToProps)(Register)

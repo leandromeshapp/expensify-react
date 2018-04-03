@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 
 class LoginT extends Component {
@@ -68,8 +68,8 @@ class LoginT extends Component {
               </div>
             </div>
           </div>
-    );
+    )
   }
 }
 
-export default LoginT;
+export default LoginT

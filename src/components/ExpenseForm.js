@@ -2,7 +2,7 @@ import React from "react"
 import moment from "moment"
 import { SingleDatePicker } from "react-dates"
 
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
 export class ExpenseForm extends React.Component {
     constructor(props) {
@@ -48,7 +48,7 @@ export class ExpenseForm extends React.Component {
     }
 
     onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         if (!this.state.description || !this.state.amount) {
             this.setState(() => ({ error: "Please provide description and amount." }))
@@ -65,7 +65,7 @@ export class ExpenseForm extends React.Component {
 
 
     render() {
-        const {dictionary} = this.props;
+        const {dictionary} = this.props
         return (
             <form className="form" onSubmit={this.onSubmit}>
             {this.state.error && <p className="form__error"> {this.state.error} </p>}
@@ -113,8 +113,8 @@ export class ExpenseForm extends React.Component {
 const mapStateToProps = (state, props) => ({
     locale: state.lang.locale,
     dictionary: state.lang.dictionary
-  });
+  })
   
   
-  export default connect(mapStateToProps)(ExpenseForm);
+  export default connect(mapStateToProps)(ExpenseForm)
   

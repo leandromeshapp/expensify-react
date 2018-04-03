@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from 'moment'
 
 export default (expenses, {
     text,
@@ -23,7 +23,7 @@ export default (expenses, {
     const maxAmountMatch = maxAmountDollars ? expense.amount <= maxAmountDollars : true
 
 
-    return startDateMatch && endDateMatch && textMatch && minAmountMatch && maxAmountMatch;
+    return startDateMatch && endDateMatch && textMatch && minAmountMatch && maxAmountMatch
     }).sort((a, b) => {
 
     if (!sortReverse) {

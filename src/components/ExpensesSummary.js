@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 
 import numeral from "numeral"
-import locale from 'numeral/locales';
+import locale from 'numeral/locales'
 
 import selectExpenses from "../selectors/expenses"
 import selectExpensesTotal from "../selectors/expenses-total"
@@ -10,14 +10,14 @@ import selectExpensesTotal from "../selectors/expenses-total"
 import { Link } from "react-router-dom"
 import { showAll } from "../actions/filters"
 
-import replaceAll from '../utils/replaceAll';
+import replaceAll from '../utils/replaceAll'
 
 export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpenseCount, visibleExpensesTotal, dictionary, locale }) => {
     const expenseCount = expenses.length
     const filteredExpensesCount = expenseCount - visibleExpenseCount
     const visibleExpenseWord = visibleExpenseCount === 1 ? 'expense' : 'expenses'
     //const formattedVisibleExpensesTotal = numeral(visibleExpensesTotal / 100).format('$0,0.00')
-    numeral.locale('pt-pt');
+    numeral.locale('pt-pt')
     const formattedVisibleExpensesTotal = numeral(visibleExpensesTotal / 100).format('0,0.00 $')
     // const formattedFilteredExpensesTotal = numeral((expensesTotal - visibleExpensesTotal) / 100).format('$0,0.00')
     const formattedFilteredExpensesTotal = numeral((expensesTotal - visibleExpensesTotal) / 100).format('0,0.00 $')
@@ -27,7 +27,7 @@ export const ExpensesSummary = ({ expenses, expensesTotal, filters, visibleExpen
           return true
         }
         return false
-    };
+    }
 
     return (
         <div className="page-header">

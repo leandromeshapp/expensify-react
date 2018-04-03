@@ -59,7 +59,7 @@ const mapStateToProps = (state) => ({
     currentUser: state.auth.currentUser,
     locale: state.lang.locale,
     dictionary: state.lang.dictionary
-});
+})
 
 
 const mapDispatchToProps = (dispatch) => ({

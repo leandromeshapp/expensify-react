@@ -11,7 +11,7 @@ export default (state = defaultState, action) => {
         locale: action.locale,
         dictionary: action.dictionary
       }
-    break;
+    break
     default:
       return state
   }

@@ -60,16 +60,16 @@ export const startEditProfile = (displayName, email, photoURL) => {
                         console.log("UPDATED! See Display Name: ", displayName.displayName)
                         console.log("UPDATED! See Email: ", displayName.email)
                         console.log("UPDATED! See Photo URL: ", displayName.photoURL)
-                        dispatch(editProfileInfo(displayName, email, photoURL));
+                        dispatch(editProfileInfo(displayName, email, photoURL))
                 }).catch(function(error) {
                         console.log("error: ", error)
-                });
+                })
             } else {
                 console.log("Not Signed In. No Update")
             }
         })
     }
-};
+}
 
 
 
@@ -85,7 +85,7 @@ export const createDisplayName = ( displayName ) => {
                         console.log("Sucess Updating!")
                 }).catch(function(error) {
                         console.log("Error updating: ", error)
-                });
+                })
             } else {
                 console.log("Not Signed In Dude. Why do you even try?")
             }
