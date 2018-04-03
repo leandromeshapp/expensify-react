@@ -9,31 +9,7 @@ import selectExpenses from "../selectors/expenses"
 
 import ReactPaginate from "react-paginate"
 
-// let indexOfLastExpense = 0
-// let indexOfFirstExpense = 0
-// let currentExpenses = ""
-
-
-
-// const handlePageClick = (data) => {
-//     let selected = data.selected + 1
-//     let offset = Math.ceil(selected * 5)
-//     console.log("selected: ",selected + 1)
-//     console.log("Offsets: ",offset)
-
-//     indexOfLastExpense = selected * 5
-//     indexOfFirstExpense = indexOfLastExpense - 5
-
-//     this.setState({ indexOfLastExpense: selected * 5 })
-
-//     this.setState({ indexOfFirstExpense: indexOfLastExpense - 5 })
-
-//     let pageToGo = (data.selected + 1)
-//     console.log("Page: ",data)
-//     console.log("Page to go: ",pageToGo)
-// }
-
-
+let newArray = []
 export class ExpenseList extends React.Component {
 //export const ExpenseList = ({ expenses, dictionary }) => (
 
@@ -48,37 +24,45 @@ export class ExpenseList extends React.Component {
         this.setState({ indexOfFirstExpense: this.state.indexOfLastExpense - 5 })
 
         console.log("Page: ",data)
+
+        this.novoArray = []
+        //this.forceUpdate()
     }
 
     constructor(props){
         super(props)
         this.state = {
             indexOfFirstExpense: 0,
-            indexOfLastExpense: 5
+            indexOfLastExpense: 5,
+            resetList: []
         }
     }
 
     render(){
         const {dictionary, expenses} = this.props
+        let novoArray = [...expenses]
+        console.log(novoArray)
+
         return(
             <div className="content-container">
                 <div className="list-header">
-                    <div className="show-for-mobile"> {dictionary.tableExpenses}</div>
-                    <div className="show-for-desktop"> {dictionary.tableExpense}</div>
-                    <div className="show-for-desktop"> {dictionary.tableAmount}</div>
+                    <div className="show-for-mobile"> {dictionary.tableExpenses} </div>
+                    <div className="show-for-desktop"> {dictionary.tableExpense} </div>
+                    <div className="show-for-desktop"> {dictionary.tableAmount} </div>
                 </div>
                 <div className="list-body">
                 {
                     expenses.length === 0 ? (
                         <div className="list-item--message">
-                            <span> No expenses </span> 
+                            <span> {dictionary.noExpenseMessage} </span> 
                         </div>
                         
                     ) : (
-                        expenses.slice(this.state.indexOfFirstExpensse, this.state.indexOfLastExpense).map((expense, index) => {
+                        // "clear" .map in order to remove previous .map search ex: slice 0,5 changes to 5,10.
+                        novoArray.slice(this.state.indexOfFirstExpensse, this.state.indexOfLastExpense).map((expense, index) => {
+                        //expenses.slice(this.state.indexOfFirstExpensse, this.state.indexOfLastExpense).map((expense, index) => {
                             return <ExpenseListItem key={expense.id} {...expense} />
-                            this.forceUpdate()
-                        })
+                        }) 
                     )
                 }
 
