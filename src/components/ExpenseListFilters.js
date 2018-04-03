@@ -75,7 +75,7 @@ export class ExpenseListFilters extends React.Component {
   }
 
   render() {
-    const {dictionary} = this.props;
+    const {dictionary} = this.props
     return (
       <div>
         <div className="content-container">

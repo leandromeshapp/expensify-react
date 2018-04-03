@@ -9,45 +9,78 @@ import selectExpenses from "../selectors/expenses"
 
 import ReactPaginate from "react-paginate"
 
-
-const handlePageClick = (data) => {
-    let selected = data.selected
-    let offset = Math.ceil(selected * 5)
-}
-
-// const indexOfLastExpense = currentPage * expensesPerPage
-// const indexOfFirstExpense = indexOfLastExpenses - expensesPerPage
-// const currentExpenses = expenses.slice(indexOfFirstExpense, indexOfLastExpenses)
+// let indexOfLastExpense = 0
+// let indexOfFirstExpense = 0
+// let currentExpenses = ""
 
 
-const paginationPressed = (page) => {
-    let pageToGo = (page.selected + 1)
-    console.log("Page: ",page)
-    console.log("Page to go: ",pageToGo)
-}
 
-//export class ExpenseForm extends React.Component {
-export const ExpenseList = ({ expenses, dictionary }) => (
-    <div className="content-container">
-        <div className="list-header">
-            <div className="show-for-mobile"> {dictionary.tableExpenses}</div>
-            <div className="show-for-desktop"> {dictionary.tableExpense}</div>
-            <div className="show-for-desktop"> {dictionary.tableAmount}</div>
-        </div>
-        <div className="list-body">
+// const handlePageClick = (data) => {
+//     let selected = data.selected + 1
+//     let offset = Math.ceil(selected * 5)
+//     console.log("selected: ",selected + 1)
+//     console.log("Offsets: ",offset)
 
-            {
-                expenses.length === 0 ? (
-                    <div className="list-item--message">
-                        <span> No expenses </span> 
-                    </div>
-                    
-                ) : (
-                    expenses.slice(0, 5).map((expense, index) => {
-                        return <ExpenseListItem key={expense.id} {...expense} />
-                    })
-                )
-            }
+//     indexOfLastExpense = selected * 5
+//     indexOfFirstExpense = indexOfLastExpense - 5
+
+//     this.setState({ indexOfLastExpense: selected * 5 })
+
+//     this.setState({ indexOfFirstExpense: indexOfLastExpense - 5 })
+
+//     let pageToGo = (data.selected + 1)
+//     console.log("Page: ",data)
+//     console.log("Page to go: ",pageToGo)
+// }
+
+
+export class ExpenseList extends React.Component {
+//export const ExpenseList = ({ expenses, dictionary }) => (
+
+    handlePageClick = (data) => {
+        const selected = data.selected + 1
+        const offset = Math.ceil(selected * 5)
+
+        console.log("Selected: ",selected)
+        console.log("Offsets: ",offset)
+
+        this.setState({ indexOfLastExpense: selected * 5})
+        this.setState({ indexOfFirstExpense: this.state.indexOfLastExpense - 5 })
+
+        console.log("Page: ",data)
+    }
+
+    constructor(props){
+        super(props)
+        this.state = {
+            indexOfFirstExpense: 0,
+            indexOfLastExpense: 5
+        }
+    }
+
+    render(){
+        const {dictionary, expenses} = this.props
+        return(
+            <div className="content-container">
+                <div className="list-header">
+                    <div className="show-for-mobile"> {dictionary.tableExpenses}</div>
+                    <div className="show-for-desktop"> {dictionary.tableExpense}</div>
+                    <div className="show-for-desktop"> {dictionary.tableAmount}</div>
+                </div>
+                <div className="list-body">
+                {
+                    expenses.length === 0 ? (
+                        <div className="list-item--message">
+                            <span> No expenses </span> 
+                        </div>
+                        
+                    ) : (
+                        expenses.slice(this.state.indexOfFirstExpensse, this.state.indexOfLastExpense).map((expense, index) => {
+                            return <ExpenseListItem key={expense.id} {...expense} />
+                            this.forceUpdate()
+                        })
+                    )
+                }
 
             <ReactPaginate
                 previousLabel={<i className="glyphicon glyphicon-chevron-left" aria-hidden="true"></i>}
@@ -59,19 +92,16 @@ export const ExpenseList = ({ expenses, dictionary }) => (
                 pageRangeDisplayed={5}
                 initialPage={0}
                 disableInitialCallback={true}
-                onPageChange={handlePageClick}
+                onPageChange={this.handlePageClick}
                 containerClassName={"pagination"}
                 subContainerClassName={"pages pagination"}
                 activeClassName={"active"}
             />
         </div>
     </div>
-)
-
-
-// paginationPressed = (page) => {
-//     let pageToGo = (page.selected + 1)
-// }
+    )}
+//)
+}
 
 const mapStateToProps = (state) => {
     return {
