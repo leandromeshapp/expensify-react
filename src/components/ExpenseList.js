@@ -6,8 +6,6 @@ import { Pagination } from 'react-bootstrap';
 import ExpenseListItem from "./ExpenseListItem"
 import selectExpenses from "../selectors/expenses"
 
-import { orderExpenses  } from '../actions/expenses';
-
 
 import ReactPaginate from "react-paginate"
 
@@ -58,8 +56,6 @@ export const ExpenseList = ({ expenses, dictionary }) => (
 const mapStateToProps = (state) => {
     return {
         expenses: selectExpenses(state.expenses, state.filters),
-
-        orderExpenses: (expenses) => dispatch(orderExpenses( expenses )),
 
         dictionary: state.lang.dictionary
     }

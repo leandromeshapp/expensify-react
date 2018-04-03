@@ -81,8 +81,16 @@ export const setExpenses = (expenses) => ({
 export const startSetExpenses = () => {
     return (dispatch, getState) => {
         const { uid } = getState().auth
-        return database.ref(`users/${uid}/expenses`).once("value")
-        .then((snapshot) => {
+        return database.ref(`users/${uid}/expenses`)
+        //.once("value")
+        .orderByKey()
+        .limitToFirst(5)
+        .on('child_added', function(snap) {
+            const expense = snap.val()
+            console.log(expense.description, expense.amount)
+          })
+        
+        //.then((snapshot) => {
             const expenses = []
 
             snapshot.forEach((childSnapshot) => {
@@ -92,28 +100,28 @@ export const startSetExpenses = () => {
                 })
             })
             dispatch(setExpenses(expenses))
-        })
+        //})
     }
 }
 
 
 
-// SET_order_expenses
-export const setOrderExpenses = (expenses) => ({
-    type: "SET_ORDER_EXPENSES",
-    expenses
-})
+// // SET_order_expenses
+// export const setOrderExpenses = (expenses) => ({
+//     type: "SET_ORDER_EXPENSES",
+//     expenses
+// })
 
 
-export const orderExpenses = (expenses) => {
-    return (dispatch, getState) => {
-        const { uid } = getState().auth
-        return database.ref(`users/${uid}/expenses`)
-        .orderByKey()
-        .on("child_added", callback)
-        .limitToFirst(5)
-        .then(() => {
-            dispatch(setOrderExpenses(expenses))
-        })
-    }
-}
+// export const orderExpenses = (expenses) => {
+//     return (dispatch, getState) => {
+//         const { uid } = getState().auth
+//         return database.ref(`users/${uid}/expenses`)
+//         .orderByKey()
+//         .on("child_added", callback)
+//         .limitToFirst(5)
+//         .then(() => {
+//             dispatch(setOrderExpenses(expenses))
+//         })
+//     }
+// }
