@@ -76,9 +76,9 @@ firebase.auth().onAuthStateChanged((user) => {
             store.dispatch(login(user.uid, profile.providerId, currentUser,  user.displayName, user.email, user.photoURL))
         })
         // store.dispatch(login(user.uid, currentUser, profile.photoURL))
-        store.dispatch(startSetExpenses()) //.then(() => {
+        store.dispatch(startSetExpenses()).then(() => {
             renderApp()
-        //})
+        })
         console.log("logged in with ")
             if (history.location.pathname === "/") {
                 history.push("/dashboard")

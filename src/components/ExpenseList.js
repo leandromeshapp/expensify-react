@@ -19,7 +19,6 @@ export const ExpenseList = ({ expenses, dictionary }) => (
         </div>
         <div className="list-body">
 
-        {/* //<button className="buttonRegister" onClick={ orderExpenses(expenses) }> Register </button> */}
             {
                 expenses.length === 0 ? (
                     <div className="list-item--message">
